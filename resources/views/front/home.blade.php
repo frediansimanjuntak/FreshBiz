@@ -23,7 +23,6 @@
                                     <div class="image">
                                         <img class="wow fadeIn" data-wow-delay="0ms" data-wow-duration="2500ms" src="{{ asset ('assets/front/images/resource/news-7.jpg') }}" alt="" />
                                         <div class="overlay-box">
-                                            <a href="blog-single-2.html" class="play-btn"><span class="icon qb-play-arrow"></span></a>
                                             <div class="content">
                                                 <div class="tag"><a href="blog-single-2.html">Travel</a></div>
                                                 <h3><a href="blog-single-2.html">Develop a new Silk Road through Russia</a></h3>
@@ -45,7 +44,6 @@
                                     <div class="image">
                                         <img class="wow fadeIn" data-wow-delay="0ms" data-wow-duration="2500ms" src="{{ asset ('assets/front/images/resource/news-7.jpg') }}" alt="" />
                                         <div class="overlay-box">
-                                            <a href="blog-single-2.html" class="play-btn"><span class="icon qb-play-arrow"></span></a>
                                             <div class="content">
                                                 <div class="tag"><a href="blog-single-2.html">Travel</a></div>
                                                 <h3><a href="blog-single-2.html">Develop a new Silk Road through Russia</a></h3>
@@ -67,7 +65,6 @@
                                     <div class="image">
                                         <img class="wow fadeIn" data-wow-delay="0ms" data-wow-duration="2500ms" src="{{ asset ('assets/front/images/resource/news-7.jpg') }}" alt="" />
                                         <div class="overlay-box">
-                                            <a href="blog-single-2.html" class="play-btn"><span class="icon qb-play-arrow"></span></a>
                                             <div class="content">
                                                 <div class="tag"><a href="blog-single-2.html">Travel</a></div>
                                                 <h3><a href="blog-single-2.html">Develop a new Silk Road through Russia</a></h3>

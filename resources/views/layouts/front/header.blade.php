@@ -36,10 +36,10 @@
                     
                     <div class="navbar-collapse collapse clearfix pull-right" id="bs-example-navbar-collapse-1">
                         <ul class="navigation clearfix">
-                            <li class="current"><a href="#">Home</a></li>
-                            <li><a href="#">Browse Event</a></li>
+                            <li class="current"><a href="{{route('front.home')}}">Home</a></li>
+                            <li><a href="{{route('front.event')}}">Browse Event</a></li>
                             <li><a href="#">Organize</a></li>
-                            <li><a href="#">News</a></li>
+                            <li><a href="{{route('front.news')}}">News</a></li>
                         </ul>
                     </div>
                 </nav>               
@@ -78,10 +78,10 @@
                     
                     <div class="navbar-collapse collapse clearfix">
                         <ul class="navigation clearfix">
-                            <li class="current"><a href="#">Home</a></li>
-                            <li><a href="#">Browse Event</a></li>
+                            <li class="current"><a href="{{route('front.home')}}">Home</a></li>
+                            <li><a href="{{route('front.event')}}">Browse Event</a></li>
                             <li><a href="#">Organize</a></li>
-                            <li><a href="#">News</a></li>
+                            <li><a href="{{route('front.news')}}">News</a></li>
                         </ul>
                     </div>
                 </nav><!-- Main Menu End-->

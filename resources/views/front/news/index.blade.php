@@ -1,5 +1,5 @@
 @extends('layouts.front.index')
-@section('title', 'Event')
+@section('title', 'News')
 
 @section('content')
 <!--Page Title-->

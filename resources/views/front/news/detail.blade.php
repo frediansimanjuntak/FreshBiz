@@ -1,5 +1,5 @@
 @extends('layouts.front.index')
-@section('title', 'Event')
+@section('title', 'News Detail')
 
 @section('content')
 <!--Blog Single Gallery-->

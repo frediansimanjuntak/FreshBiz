@@ -28,4 +28,9 @@ Route::get('/news/detail', function () {
 })->name('front.news.detail');
 Auth::routes();
 
+
+Route::get('/admin/dashboard', function () {
+    return view('admin.home');
+})->name('admin.home');
+
 Route::get('/home', 'HomeController@index')->name('home');

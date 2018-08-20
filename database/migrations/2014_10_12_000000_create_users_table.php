@@ -20,6 +20,7 @@ class CreateUsersTable extends Migration
             $table->string('qs_session_key');
             $table->string('name');
             $table->string('email')->unique();
+            $table->string('phone');
             $table->text('photo_url');            
             $table->boolean('disabled')->default(false);
             $table->boolean('administrator')->default(false);

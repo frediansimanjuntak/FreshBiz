@@ -210,7 +210,8 @@ return [
         'Validator' => Illuminate\Support\Facades\Validator::class,
         'View' => Illuminate\Support\Facades\View::class,        
         'GlobalHelpers' => App\Helpers\GlobalHelpers::class,  
-        'QsApiHelpers' => App\Helpers\QsApiHelpers::class,
+        'QsApiHelpers' => App\Helpers\QsApiHelpers::class,         
+        'CrudHelpers' => App\Helpers\QsApiHelpers::class,
         'Form' => Collective\Html\FormFacade::class,
         'Html' => Collective\Html\HtmlFacade::class,
 

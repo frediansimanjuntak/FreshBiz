@@ -54,7 +54,7 @@ class QsApiHelpers
                 'terms' => "true"
             ];
 
-            $callApi = ApiQS::connectAPI($data1, 'POST', self::$apiUrl.'user/register');
+            $callApi = QsApiHelpers::connectAPI($data1, 'POST', self::$apiUrl.'user/register');
             return $callApi;
     	}
     	catch (\Exception $e) {
@@ -70,7 +70,7 @@ class QsApiHelpers
                 'password' => $body['password'],
                 'application_key' => env('APPLICATION_KEY_API_QS')
             ];
-            $callApi = ApiQS::connectAPI($data1, 'POST', self::$apiUrl.'session/auth');
+            $callApi = QsApiHelpers::connectAPI($data1, 'POST', self::$apiUrl.'session/auth');
             return $callApi;
     	}
     	catch (\Exception $e) {
@@ -87,7 +87,7 @@ class QsApiHelpers
                 'application_key' => env('APPLICATION_KEY_API_QS')
             ];
 
-            $callApi = ApiQS::connectAPI($data1, 'POST', self::$apiUrl.'session/details');
+            $callApi = QsApiHelpers::connectAPI($data1, 'POST', self::$apiUrl.'session/details');
             return $callApi;
     	}
     	catch (\Exception $e) {
@@ -104,7 +104,7 @@ class QsApiHelpers
                 'application_key' => env('APPLICATION_KEY_API_QS')
             ];
 
-            $callApi = ApiQS::connectAPI($data1, 'POST', self::$apiUrl.'session/check');
+            $callApi = QsApiHelpers::connectAPI($data1, 'POST', self::$apiUrl.'session/check');
             return $callApi;
     	}
     	catch (\Exception $e) {
@@ -121,7 +121,7 @@ class QsApiHelpers
                 'application_key' => env('APPLICATION_KEY_API_QS')
             ];
 
-            $callApi = ApiQS::connectAPI($data1, 'POST', self::$apiUrl.'session/renew');
+            $callApi = QsApiHelpers::connectAPI($data1, 'POST', self::$apiUrl.'session/renew');
             return $callApi;
     	}
     	catch (\Exception $e) {
@@ -138,7 +138,7 @@ class QsApiHelpers
                 'application_key' =>env('APPLICATION_KEY_API_QS')
             ];
 
-            $callApi = ApiQS::connectAPI($data1, 'POST', self::$apiUrl.'user/retrieve/'.$user_id);
+            $callApi = QsApiHelpers::connectAPI($data1, 'POST', self::$apiUrl.'user/retrieve/'.$user_id);
             return $callApi;
     	}
     	catch (\Exception $e) {

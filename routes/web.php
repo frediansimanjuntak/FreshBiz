@@ -34,6 +34,7 @@ Route::get('/admin/dashboard', function () {
 })->name('admin.home');
 
 Route::get('/home', 'HomeController@index')->name('home');
+Route::get('/logout', 'Auth\LoginController@logout')->name('logout');
 
 Route::group(['prefix' => 'admin'], function () {
     Route::name('admin.')->group(function () {

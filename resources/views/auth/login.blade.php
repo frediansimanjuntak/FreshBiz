@@ -2,78 +2,16 @@
 @section('title', 'Sign In')
 
 @section('content')
-{{-- <div class="container">
-    <div class="row justify-content-center">
-        <div class="col-md-8">
-            <div class="card">
-                <div class="card-header">{{ __('Login') }}</div>
-
-                <div class="card-body">
-                    <form method="POST" action="{{ route('login') }}" aria-label="{{ __('Login') }}">
-                        @csrf
-
-                        <div class="form-group row">
-                            <label for="email" class="col-sm-4 col-form-label text-md-right">{{ __('E-Mail Address') }}</label>
-
-                            <div class="col-md-6">
-                                <input id="email" type="email" class="form-control{{ $errors->has('email') ? ' is-invalid' : '' }}" name="email" value="{{ old('email') }}" required autofocus>
-
-                                @if ($errors->has('email'))
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $errors->first('email') }}</strong>
-                                    </span>
-                                @endif
-                            </div>
-                        </div>
-
-                        <div class="form-group row">
-                            <label for="password" class="col-md-4 col-form-label text-md-right">{{ __('Password') }}</label>
-
-                            <div class="col-md-6">
-                                <input id="password" type="password" class="form-control{{ $errors->has('password') ? ' is-invalid' : '' }}" name="password" required>
-
-                                @if ($errors->has('password'))
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $errors->first('password') }}</strong>
-                                    </span>
-                                @endif
-                            </div>
-                        </div>
-
-                        <div class="form-group row">
-                            <div class="col-md-6 offset-md-4">
-                                <div class="form-check">
-                                    <input class="form-check-input" type="checkbox" name="remember" id="remember" {{ old('remember') ? 'checked' : '' }}>
-
-                                    <label class="form-check-label" for="remember">
-                                        {{ __('Remember Me') }}
-                                    </label>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="form-group row mb-0">
-                            <div class="col-md-8 offset-md-4">
-                                <button type="submit" class="btn btn-primary">
-                                    {{ __('Login') }}
-                                </button>
-
-                                <a class="btn btn-link" href="{{ route('password.request') }}">
-                                    {{ __('Forgot Your Password?') }}
-                                </a>
-                            </div>
-                        </div>
-                    </form>
-                </div>
-            </div>
-        </div>
-    </div>
-</div> --}}
-<section class="contact-section">
+<section class="contact-section">  
     <div class="auto-container">
         <div class="row clearfix">
-            <!--Form Column-->
-            <div class="form-column col-md-6 col-sm-12 col-xs-12">
+            <!--Form Column-->     
+            <div class="form-column col-md-6 col-sm-12 col-xs-12">  
+                @if ($errors->has('login_error'))
+                    <span class="err">
+                        <strong>*Caution: {{ $errors->first('login_error') }}</strong>
+                    </span>
+                @endif
                 <div class="sec-title">
                     <h2>Sign in</h2>
                 </div>
@@ -82,13 +20,19 @@
                 <div class="contact-form">
                     {!! Form::open(['route' => 'login', 'method' => 'POST', 'id' => 'login_form']) !!}
                         <div class="clearfix">
-                            <div class="form-group">
+                            <div class="form-group {{ $errors->has('email') ? ' has-error' : '' }}">
                                 {!! Form::text('email', '' ,['class' => 'form-control input-lg', 'placeholder' => 'Enter email address', 'required', 'autofocus']); !!}
+                                @if ($errors->has('email'))
+                                    <span class="help-block">
+                                        <strong>{{ $errors->first('email') }}</strong>
+                                    </span>
+                                @endif
                             </div>
-                            <div class="form-group">
+                            <div class="form-group {{ $errors->has('password') ? ' has-error' : '' }}">
                                 {!! Form::password('password', ['class' => 'form-control input-lg', 'placeholder' => 'Enter password']); !!}
                             </div>           
-                            <div class="form-group text-right">                                
+                            <div class="form-group text-right"> 
+                                <p><a href="https://account.quarkspark.com/user/login">Forgot password?</a></p>
                                 {!! Form::submit('Sign In', ['class' => 'theme-btn submit-btn']); !!}
                             </div>                            
                         </div>                        
@@ -100,6 +44,11 @@
                 <div class="vl"></div>
             </div>
             <div class="form-column col-md-4 col-sm-12 col-xs-12">
+                @if ($errors->has('register_error'))
+                    <span class="err">
+                        <strong>*Caution: {{ $errors->first('register_error') }}</strong>
+                    </span>
+                @endif
                 <div class="sec-title">
                     <h2>Sign Up</h2>
                 </div>
@@ -110,15 +59,35 @@
                         <div class="clearfix">
                             <div class="form-group">
                                 {!! Form::text('first_name', '' ,['class' => 'form-control input-lg', 'placeholder' => 'Enter first name', 'autofocus', 'required']); !!}
+                                @if ($errors->has('first_name'))
+                                    <span class="help-block">
+                                        <strong>{{ $errors->first('first_name') }}</strong>
+                                    </span>
+                                @endif
                             </div>
                             <div class="form-group">
                                 {!! Form::text('last_name', '' ,['class' => 'form-control input-lg', 'placeholder' => 'Enter last name', 'autofocus', 'required']); !!}
+                                @if ($errors->has('last_name'))
+                                    <span class="help-block">
+                                        <strong>{{ $errors->first('last_name') }}</strong>
+                                    </span>
+                                @endif
                             </div>
                             <div class="form-group">
-                                {!! Form::text('email', '' ,['class' => 'form-control input-lg', 'placeholder' => 'Enter email address', 'required', 'autofocus']); !!}
+                                {!! Form::text('reg_email', '' ,['class' => 'form-control input-lg', 'placeholder' => 'Enter email address', 'required', 'autofocus']); !!}
+                                @if ($errors->has('reg_email'))
+                                    <span class="help-block">
+                                        <strong>{{ $errors->first('reg_email') }}</strong>
+                                    </span>
+                                @endif
                             </div>
                             <div class="form-group">
                                 {!! Form::password('password', ['class' => 'form-control input-lg', 'placeholder' => 'Enter password']); !!}
+                                @if ($errors->has('password'))
+                                    <span class="help-block">
+                                        <strong>{{ $errors->first('password') }}</strong>
+                                    </span>
+                                @endif
                             </div>     
                             <div class="form-group">         
                                 {!! Form::password('password_confirmation', ['class' => 'form-control input-lg', 'placeholder' => 'Enter confirm password']); !!}

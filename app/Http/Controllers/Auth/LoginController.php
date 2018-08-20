@@ -69,7 +69,7 @@ class LoginController extends Controller
                 $user->save();
                 
                 if ($user->disabled == true) {
-                    return redirect()->back()->withErrors(['error' => 'Please contact admin about your account.']);
+                    return redirect()->back()->withErrors(['login_error' => 'Please contact admin about your account.']);
                 }
                 else {
                     Auth::login($user);
@@ -77,14 +77,14 @@ class LoginController extends Controller
                 }
             }
             else {
-                return redirect()->back()->withInput()->withErrors(['error' => $detail_user->message]);
+                return redirect()->back()->withInput()->withErrors(['login_error' => $detail_user->message]);
             }
         } 
         else if ($is_login->success == 0){
-            return redirect()->back()->withInput()->withErrors(['error' => $is_login->message]);
+            return redirect()->back()->withInput()->withErrors(['login_error' => $is_login->message]);
         }           
         else {
-            return redirect()->back()->withInput()->withErrors(['error' => 'System Error, Please Contact Admin']);
+            return redirect()->back()->withInput()->withErrors(['login_error' => 'System Error, Please Contact Admin']);
         }
     }    
 

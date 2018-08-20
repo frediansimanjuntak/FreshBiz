@@ -2,11 +2,13 @@
 
 namespace App\Http\Controllers\Auth;
 
-use App\User;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Foundation\Auth\RegistersUsers;
+use Illuminate\Auth\Events\Registered;
+use App\Models\User;
+use QsApiHelpers;
 
 class RegisterController extends Controller
 {
@@ -49,8 +51,9 @@ class RegisterController extends Controller
     protected function validator(array $data)
     {
         return Validator::make($data, [
-            'name' => 'required|string|max:255',
-            'email' => 'required|string|email|max:255|unique:users',
+            'first_name' => 'required|string|max:255',
+            'last_name' => 'required|string|max:255',
+            'reg_email' => 'required|string|email|max:255|unique:users',
             'password' => 'required|string|min:6|confirmed',
         ]);
     }
@@ -63,10 +66,31 @@ class RegisterController extends Controller
      */
     protected function create(array $data)
     {
-        return User::create([
-            'name' => $data['name'],
-            'email' => $data['email'],
-            'password' => Hash::make($data['password']),
-        ]);
+        $data['email'] = $data['reg_email'];
+        $is_register = QsApiHelpers::register($data); 
+        if ($is_register->success == 1) {
+            $user = User::create([
+                'name' => $data['first_name'].' '.$data['last_name'],
+                'email' => $data['reg_email']
+            ]);
+            return $user; 
+        }
+        else if ($is_register->success == 0){
+            return redirect()->back()->withInput()->withErrors(['register_error' => $is_register->message]);
+        }    
+        else {
+            return redirect()->back()->withInput()->withErrors(['register_error' => 'System Error, Please Contact Admin']);
+        }   
+    }
+
+    public function register(Request $request)
+    {        
+        $this->validator($request->all())->validate();
+
+        event(new Registered($user = $this->create($request->all())));
+        
+        // $this->guard()->login($user);
+        return $this->registered($request, $user)
+                        ?: redirect($this->redirectPath());
     }
 }

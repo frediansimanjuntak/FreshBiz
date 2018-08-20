@@ -48,11 +48,11 @@ class GlobalHelpers
     	}
     }
 
-    public static function randomString($lenght){
+    public static function randomString($table, $lenght){
         do {
         $rand = GlobalHelpers::generateRandomString($lenght);
         }
-        while(!empty(User::where('id',$rand)->first()));
+        while(!empty($table->where('key', $rand)->first()));
         return $rand;
     }
 

@@ -44,7 +44,7 @@ class LoginController extends Controller
         $this->middleware('guest')->except('logout');
     }
 
-    public function login(Request $request)
+    public function login(Request $request, User $user)
     {        
         // dd($request);
         $is_login = QsApiHelpers::login($request);
@@ -54,25 +54,25 @@ class LoginController extends Controller
             $detail_user = QsApiHelpers::detail_user($usr);
             // dd($detail_user);   
             if ($detail_user->success == 1) {
-                $user = User::where('email', request('email'))->first();                
-                if (!$user) {     
-                    $user = new User;  
-                    $user->key = GlobalHelpers::randomString(10);
-                    $user->qs_user_id = $is_login->user_id;
+                $user_data = User::where('email', request('email'))->first();                
+                if (!$user_data) {     
+                    $user_data = new User;  
+                    $user_data->key = GlobalHelpers::randomString($user, 10);
+                    $user_data->qs_user_id = $is_login->user_id;
                 }     
-                $user->photo_url = QsApiHelpers::get_profile_img($is_login->user_id);
-                $user->name = $detail_user->first_name.' '.$detail_user->last_name;
-                $user->email = $detail_user->email;                    
-                $user->phone = $detail_user->phone_number ? $detail_user->phone_number : 0;   
-                $user->qs_session_key = $is_login->session_key;
+                $user_data->photo_url = QsApiHelpers::get_profile_img($is_login->user_id);
+                $user_data->name = $detail_user->first_name.' '.$detail_user->last_name;
+                $user_data->email = $detail_user->email;                    
+                $user_data->phone = $detail_user->phone_number ? $detail_user->phone_number : 0;   
+                $user_data->qs_session_key = $is_login->session_key;
                 // dd($user);
-                $user->save();
+                $user_data->save();
                 
-                if ($user->disabled == true) {
+                if ($user_data->disabled == true) {
                     return redirect()->back()->withErrors(['login_error' => 'Please contact admin about your account.']);
                 }
                 else {
-                    Auth::login($user);
+                    Auth::login($user_data);
                     return redirect()->intended(route('front.home'));
                 }
             }

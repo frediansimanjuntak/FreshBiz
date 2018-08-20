@@ -9,6 +9,7 @@ use Illuminate\Foundation\Auth\RegistersUsers;
 use Illuminate\Auth\Events\Registered;
 use App\Models\User;
 use QsApiHelpers;
+use GlobalHelpers;
 
 class RegisterController extends Controller
 {
@@ -64,16 +65,17 @@ class RegisterController extends Controller
      * @param  array  $data
      * @return \App\User
      */
-    protected function create(array $data)
+    protected function create(array $data, User $user)
     {
         $data['email'] = $data['reg_email'];
         $is_register = QsApiHelpers::register($data); 
         if ($is_register->success == 1) {
-            $user = User::create([
+            $user_data = User::create([
                 'name' => $data['first_name'].' '.$data['last_name'],
-                'email' => $data['reg_email']
+                'email' => $data['reg_email'],
+                'key' => GlobalHelpers::randomString($user, 10)
             ]);
-            return $user; 
+            return $user_data; 
         }
         else if ($is_register->success == 0){
             return redirect()->back()->withInput()->withErrors(['register_error' => $is_register->message]);

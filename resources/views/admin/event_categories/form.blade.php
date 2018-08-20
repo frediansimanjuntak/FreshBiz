@@ -1,5 +1,5 @@
 @extends('layouts.admin.index')
-@section('title', (\Request::route()->getName()=='admin.event_categories.view.create')?'Create Event Category':'Edit Event Category'))
+@section('title', (\Request::route()->getName()=='admin.event_categories.view.create')?'Create Event Category':'Edit Event Category')
 @section('pagespecificstyles') 
 <!-- style -->
 <link href="{{ asset ('assets/admin/lib/highlightjs/github.css') }}" rel="stylesheet">
@@ -9,7 +9,6 @@
 @endsection
 
 @section('content')
-
 <!-- ########## START: MAIN PANEL ########## -->
 <div class="br-mainpanel">
     <div class="br-pageheader pd-y-15 pd-l-20">

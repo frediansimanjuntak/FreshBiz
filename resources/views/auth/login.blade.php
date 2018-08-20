@@ -1,7 +1,8 @@
-@extends('layouts.app')
+@extends('layouts.front.index')
+@section('title', 'Sign In')
 
 @section('content')
-<div class="container">
+{{-- <div class="container">
     <div class="row justify-content-center">
         <div class="col-md-8">
             <div class="card">
@@ -67,5 +68,69 @@
             </div>
         </div>
     </div>
-</div>
+</div> --}}
+<section class="contact-section">
+    <div class="auto-container">
+        <div class="row clearfix">
+            <!--Form Column-->
+            <div class="form-column col-md-6 col-sm-12 col-xs-12">
+                <div class="sec-title">
+                    <h2>Sign in</h2>
+                </div>
+                <div class="text">Welcome To Kaiju Event. Please Login if you have an account</div>
+                <!--Contact Form-->
+                <div class="contact-form">
+                    {!! Form::open(['route' => 'login', 'method' => 'POST', 'id' => 'login_form']) !!}
+                        <div class="clearfix">
+                            <div class="form-group">
+                                {!! Form::text('email', '' ,['class' => 'form-control input-lg', 'placeholder' => 'Enter email address', 'required', 'autofocus']); !!}
+                            </div>
+                            <div class="form-group">
+                                {!! Form::password('password', ['class' => 'form-control input-lg', 'placeholder' => 'Enter password']); !!}
+                            </div>           
+                            <div class="form-group text-right">                                
+                                {!! Form::submit('Sign In', ['class' => 'theme-btn submit-btn']); !!}
+                            </div>                            
+                        </div>                        
+                    {!! Form::close() !!}
+                </div>
+            </div> 
+            
+            <div class="form-column col-md-2 col-sm-12 col-xs-12">
+                <div class="vl"></div>
+            </div>
+            <div class="form-column col-md-4 col-sm-12 col-xs-12">
+                <div class="sec-title">
+                    <h2>Sign Up</h2>
+                </div>
+                <div class="text">Don't have an account. Please Sign up first</div>
+                <!--Contact Form-->
+                <div class="contact-form">
+                    {!! Form::open(['route' => 'register', 'method' => 'POST', 'id' => 'register_form', 'class' => 'form-register']) !!}
+                        <div class="clearfix">
+                            <div class="form-group">
+                                {!! Form::text('first_name', '' ,['class' => 'form-control input-lg', 'placeholder' => 'Enter first name', 'autofocus', 'required']); !!}
+                            </div>
+                            <div class="form-group">
+                                {!! Form::text('last_name', '' ,['class' => 'form-control input-lg', 'placeholder' => 'Enter last name', 'autofocus', 'required']); !!}
+                            </div>
+                            <div class="form-group">
+                                {!! Form::text('email', '' ,['class' => 'form-control input-lg', 'placeholder' => 'Enter email address', 'required', 'autofocus']); !!}
+                            </div>
+                            <div class="form-group">
+                                {!! Form::password('password', ['class' => 'form-control input-lg', 'placeholder' => 'Enter password']); !!}
+                            </div>     
+                            <div class="form-group">         
+                                {!! Form::password('password_confirmation', ['class' => 'form-control input-lg', 'placeholder' => 'Enter confirm password']); !!}
+                            </div>            
+                            <div class="form-group text-right">                                
+                                {!! Form::submit('Sign Up', ['class' => 'theme-btn submit-btn']); !!}
+                            </div>                            
+                        </div>                        
+                    {!! Form::close() !!}
+                </div>
+            </div>           
+        </div>
+    </div>
+</section>
 @endsection

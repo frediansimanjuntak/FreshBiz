@@ -7844,3 +7844,12 @@ img{
 .banner-footer .text span{
 	color:#fd1e39;
 }
+
+.vl {
+	border-left: 6px solid #e73f43;
+    height: 500px;
+    position: absolute;
+    left: 50%;
+    margin-left: -3px;
+    top: 0;
+}

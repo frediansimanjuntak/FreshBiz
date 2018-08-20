@@ -35,12 +35,7 @@
                     </div>
                     
                     <div class="navbar-collapse collapse clearfix pull-right" id="bs-example-navbar-collapse-1">
-                        <ul class="navigation clearfix">
-                            <li class="current"><a href="{{route('front.home')}}">Home</a></li>
-                            <li><a href="{{route('front.event')}}">Browse Event</a></li>
-                            <li><a href="#">Organize</a></li>
-                            <li><a href="{{route('front.news')}}">News</a></li>
-                        </ul>
+                        @include('layouts.front.header-list')
                     </div>
                 </nav>               
                 
@@ -77,12 +72,7 @@
                     </div>
                     
                     <div class="navbar-collapse collapse clearfix">
-                        <ul class="navigation clearfix">
-                            <li class="current"><a href="{{route('front.home')}}">Home</a></li>
-                            <li><a href="{{route('front.event')}}">Browse Event</a></li>
-                            <li><a href="#">Organize</a></li>
-                            <li><a href="{{route('front.news')}}">News</a></li>
-                        </ul>
+                        @include('layouts.front.header-list')
                     </div>
                 </nav><!-- Main Menu End-->
             </div>
@@ -110,13 +100,8 @@
         <br>
         <!-- .Side-menu -->
         <div class="side-menu">
-            <!--navigation-->
-            <ul class="navigation clearfix">
-                <li class="current"><a href="{{route('front.home')}}">Home</a></li>
-                <li><a href="{{route('front.event')}}">Browse Event</a></li>
-                <li><a href="#">Organize</a></li>
-                <li><a href="{{route('front.news')}}">News</a></li>
-             </ul>
+            <!--navigation-->            
+            @include('layouts.front.header-list') 
         </div>
         <!-- /.Side-menu -->       
        

@@ -73,7 +73,7 @@ class LoginController extends Controller
                 }
                 else {
                     Auth::login($user);
-                    return redirect()->route('front.home');
+                    return redirect()->intended(route('front.home'));
                 }
             }
             else {

@@ -25,11 +25,12 @@
     @if($errors->first('error'))
     {{$errors->first('error')}}
     @endif
-
+    
+    <div class="col-md-6">
     <div class="br-pagebody">
         <div class="br-section-wrapper">
             <div class="row">
-                <div class="col-xl-6">
+                <div class="col-xl-12">
                     @if(\Request::route()->getName()=='admin.event_categories.view.create') 
                         {!! Form::open(['route' => 'admin.event_categories.func.create', 'method' => 'POST', 'id' => 'event_categories_form', 'enctype' => 'multipart/form-data']) !!}
                     @elseif(\Request::route()->getName()=='admin.event_categories.view.update')
@@ -69,6 +70,7 @@
             </div><!-- col-6 -->
         </div><!-- row -->            
     </div><!-- br-pagebody -->
+    </div>
     @include('layouts.admin.footer')
 </div><!-- br-mainpanel -->
 <!-- ########## END: MAIN PANEL ########## -->

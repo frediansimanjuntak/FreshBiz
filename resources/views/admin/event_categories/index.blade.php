@@ -31,7 +31,8 @@
                 <tr>
                 <th class="wd-15p">Name</th>
                 <th class="wd-15p">Description</th>
-                <th class="wd-20p">Disabled</th>
+                <th class="wd-10p">Disabled</th>
+                <th class="wd-10p"></th>
                 </tr>
             </thead>
             <tbody>
@@ -39,7 +40,15 @@
                 <tr>
                     <td>{{$category->name}}</td>
                     <td>{{$category->description}}</td>
-                    <td>{{$category->disabled == true ? 'Yes' : 'No'}}</td>                
+                    <td>{{$category->disabled == true ? 'Yes' : 'No'}}</td>                                    
+                    <td>
+                        <form action="{{route('admin.event_categories.func.delete')}}" method="POST" enctype="multipart/form-data">
+                            {{ csrf_field() }}                                                
+                            <input type="hidden" name="category" value="{{$category->key}}">
+                            <a href="{{ route('admin.event_categories.view.update')}}?category={{$category->key}}" class="btn btn-primary">Edit</a>
+                            <button type="submit" class="btn btn-danger">Delete</button>
+                        </form>    
+                    </td>
                 </tr>
                 @endforeach                
             </tbody>

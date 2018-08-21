@@ -9,6 +9,7 @@ use Illuminate\Support\Facades\Auth;
 use Hesto\MultiAuth\Traits\LogsoutGuard;
 use App\Models\User;
 use QsApiHelpers;
+use Session;
 
 class LoginController extends Controller
 {
@@ -71,7 +72,8 @@ class LoginController extends Controller
 
     public function logout()
     {
-        Auth::guard('admin')->logout();
+        Auth::guard('admin')->logout();        
+        Session::flush();
         return redirect('/admin/login');
     }
 

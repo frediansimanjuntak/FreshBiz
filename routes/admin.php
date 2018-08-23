@@ -16,6 +16,13 @@ Route::group(['prefix' => 'admin', 'middleware' => 'admin', 'namespace' => 'Admi
                 Route::post('/delete', 'EventCategoriesController@delete')->name('delete');     
             }); 
         }); 
-         
+        Route::group(['prefix' => 'website_setting', 'namespace' => 'WebsiteSetting'], function () { 
+            Route::name('setting.website.view.')->group(function () {                
+                Route::get('/setting/website', 'WebsiteSettingController@view_update')->name('update');
+            });  
+            Route::name('setting.website.func.')->group(function () {   
+                Route::put('/setting/website/update', 'WebsiteSettingController@update')->name('update');    
+            }); 
+        });  
     });
 });

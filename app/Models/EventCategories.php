@@ -6,7 +6,9 @@ use Illuminate\Database\Eloquent\Model;
 
 class EventCategories extends Model
 {
-    //
+    //    
+    protected $primaryKey = 'key';
+    public $incrementing = false;
     const UPDATED_AT = 'updated_at';
     protected $fillable = [
         'key', 'name', 'description', 'disabled'

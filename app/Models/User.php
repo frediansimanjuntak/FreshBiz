@@ -14,6 +14,8 @@ class User extends Authenticatable
      *
      * @var array
      */
+    protected $primaryKey = 'key';
+    public $incrementing = false;
     protected $fillable = [
         'name', 'email', 'phone', 'key', 'user_id', 'photo_url', 'disabled', 'administrator'
     ];
@@ -26,4 +28,9 @@ class User extends Authenticatable
     protected $hidden = [
         'password', 'remember_token',
     ];
+
+    public function event_organisers()
+    {
+        return $this->hasMany('App\Models\EventOrganiser');
+    }
 }

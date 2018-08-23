@@ -6,9 +6,12 @@ use Illuminate\Database\Eloquent\Model;
 
 class EventOrganiser extends Model
 {
+    
+    protected $primaryKey = 'key';
+    public $incrementing = false;
     const UPDATED_AT = 'updated_at';
     protected $fillable = [
-        'company_name', 'description', 'address', 'phone', 'email', 'website', 'user_key'
+        'key', 'company_name', 'description', 'address', 'phone', 'email', 'website', 'user_key'
     ];
     protected $hidden = [
 
@@ -23,4 +26,9 @@ class EventOrganiser extends Model
     protected $dates = [
         'created_at', 'updated_at', 
     ];
+
+    public function user()
+    {
+        return $this->belongsTo('App\Models\User', 'user_key');
+    }
 }

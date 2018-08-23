@@ -31,7 +31,7 @@
             <li class="nav-item"><a href="{{route('admin.event_categories.view.list')}}" class="nav-link">List</a></li>
             <li class="nav-item"><a href="{{route('admin.event_categories.view.create')}}" class="nav-link">Create</a></li>
         </ul>
-        <a href="#" class="br-menu-link">
+        <a href="#" class="br-menu-link {{ GlobalHelpers::set_active(['admin.event_organisers.view.list', 'admin.event_organisers.view.create']) }}">
             <div class="br-menu-item">
                 <i class="menu-item-icon ion-briefcase tx-20"></i>
                 <span class="menu-item-label">Event Organisers</span>
@@ -39,8 +39,8 @@
             </div><!-- menu-item -->
         </a><!-- br-menu-link -->
         <ul class="br-menu-sub nav flex-column">
-            <li class="nav-item"><a href="chart-morris.html" class="nav-link">List</a></li>
-            <li class="nav-item"><a href="chart-flot.html" class="nav-link">Create</a></li>
+            <li class="nav-item"><a href="{{route('admin.event_organisers.view.list')}}" class="nav-link">List</a></li>
+            <li class="nav-item"><a href="{{route('admin.event_organisers.view.create')}}" class="nav-link">Create</a></li>
         </ul>
         <a href="#" class="br-menu-link {{ GlobalHelpers::set_active(['admin.user.view.list']) }}">
             <div class="br-menu-item">

@@ -31,6 +31,14 @@ Route::group(['prefix' => 'admin', 'middleware' => 'admin', 'namespace' => 'Admi
             Route::name('setting.email.func.')->group(function () {   
                 Route::put('/setting/email/update', 'EmailSettingController@update')->name('update');    
             }); 
-        }); 
+        });   
+        Route::group(['prefix' => 'user', 'namespace' => 'User'], function () { 
+            Route::name('user.view.')->group(function () {                
+                Route::get('/list', 'UserController@index')->name('list');
+            });  
+            Route::name('user.func.')->group(function () {   
+                Route::POST('/update', 'UserController@update')->name('update');      
+            }); 
+        });  
     });
 });

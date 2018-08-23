@@ -42,7 +42,7 @@
             <li class="nav-item"><a href="chart-morris.html" class="nav-link">List</a></li>
             <li class="nav-item"><a href="chart-flot.html" class="nav-link">Create</a></li>
         </ul>
-        <a href="#" class="br-menu-link">
+        <a href="#" class="br-menu-link {{ GlobalHelpers::set_active(['admin.user.view.list']) }}">
             <div class="br-menu-item">
                 <i class="menu-item-icon icon ion-person-stalker tx-24"></i>
                 <span class="menu-item-label">Users</span>
@@ -50,7 +50,7 @@
             </div><!-- menu-item -->
         </a><!-- br-menu-link -->
         <ul class="br-menu-sub nav flex-column">
-            <li class="nav-item"><a href="form-elements.html" class="nav-link">List</a></li>
+            <li class="nav-item"><a href="{{route('admin.user.view.list')}}" class="nav-link">List</a></li>
         </ul>    
         <a href="#" class="br-menu-link {{ GlobalHelpers::set_active(['admin.setting.website.view.update', 'admin.setting.email.view.update']) }}">
             <div class="br-menu-item">

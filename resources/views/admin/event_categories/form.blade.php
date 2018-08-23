@@ -18,13 +18,21 @@
         <span class="breadcrumb-item active">{{(\Request::route()->getName()=='admin.event_categories.view.create')?'Create':'Edit'}}</span>
         </nav>
     </div><!-- br-pageheader -->
+    @if($errors->first('error'))
+    <div class="alert alert-danger" role="alert">
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+        </button>
+        <div class="d-flex align-items-center justify-content-start">
+            <i class="icon ion-ios-checkmark alert-icon tx-32 mg-t-5 mg-xs-t-0"></i>
+            <span><strong>Error!</strong> {{$errors->first('error')}}</span>
+        </div><!-- d-flex -->
+    </div><!-- alert -->
+    @endif
     <div class="pd-x-20 pd-sm-x-30 pd-t-20 pd-sm-t-30">
         <h4 class="tx-gray-800 mg-b-5">Event Categories</h4>
         <p class="mg-b-0">{{(\Request::route()->getName()=='admin.event_categories.view.create')?'Create New Data':'Edit Data'}}</p>
     </div>
-    @if($errors->first('error'))
-    {{$errors->first('error')}}
-    @endif
     
     <div class="col-md-6">
     <div class="br-pagebody">

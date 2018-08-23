@@ -1,5 +1,5 @@
 @extends('layouts.admin.index')
-@section('title', 'Email Setting')
+@section('title', 'User Create')
 @section('pagespecificstyles') 
 <!-- style -->
 <link href="{{ asset ('assets/admin/lib/highlightjs/github.css') }}" rel="stylesheet">
@@ -14,8 +14,8 @@
     <div class="br-pageheader pd-y-15 pd-l-20">
         <nav class="breadcrumb pd-0 mg-0 tx-12">
         <a class="breadcrumb-item" href="index.html">Dashboard</a>
-        <a class="breadcrumb-item" href="#">Setting</a>
-        <span class="breadcrumb-item active">Email</span>
+        <a class="breadcrumb-item" href="#">User</a>
+        <span class="breadcrumb-item active">Create</span>
         </nav>
     </div><!-- br-pageheader -->
     @if($errors->first('error'))
@@ -30,7 +30,8 @@
     </div><!-- alert -->
     @endif
     <div class="pd-x-20 pd-sm-x-30 pd-t-20 pd-sm-t-30">
-        <h4 class="tx-gray-800 mg-b-5">Email Setting</h4>
+        <h4 class="tx-gray-800 mg-b-5">User</h4>        
+        <p class="mg-b-0">Create new data</p>
     </div>
     
     <div class="col-md-6">
@@ -38,54 +39,65 @@
         <div class="br-section-wrapper">
             <div class="row">
                 <div class="col-xl-12">
-                    {!! Form::open(['route' => 'admin.setting.email.func.update', 'method' => 'PUT', 'id' => 'event_categories_form', 'enctype' => 'multipart/form-data']) !!}
+                    {!! Form::open(['route' => 'admin.user.func.create', 'method' => 'PUT', 'id' => 'event_categories_form', 'enctype' => 'multipart/form-data']) !!}
                     <div class="form-layout form-layout-4">
                         <div class="row">
-                            {!! Form::label('from_name', 'From Name', ['class' => 'col-sm-4 form-control-label']); !!}
+                            {!! Form::label('first_name', 'First name', ['class' => 'col-sm-4 form-control-label']); !!}
                             <div class="col-sm-8 mg-t-10 mg-sm-t-0">
-                            {!! Form::text('from_name', $email_setting ? $email_setting->from_name : null,['class' => 'form-control', 'placeholder' => 'Enter email from name', 'autofocus', 'required']); !!}
-                            @if ($errors->has('from_name'))
+                            {!! Form::text('first_name', null,['class' => 'form-control', 'placeholder' => 'Enter first name', 'autofocus', 'required']); !!}
+                            @if ($errors->has('first_name'))
                                 <span class="help-block">
-                                    <strong>{{ $errors->first('from_name') }}</strong>
+                                    <strong>{{ $errors->first('first_name') }}</strong>
                                 </span> 
                             @endif
                             </div>
                         </div><!-- row -->  
                         <div class="row mg-t-20">
-                            {!! Form::label('from_email', 'From Email', ['class' => 'col-sm-4 form-control-label']); !!}
+                            {!! Form::label('last_name', 'Last name', ['class' => 'col-sm-4 form-control-label']); !!}
                             <div class="col-sm-8 mg-t-10 mg-sm-t-0">
-                            {!! Form::text('from_email', $email_setting ? $email_setting->from_email : null ,['class' => 'form-control', 'placeholder' => 'Enter email address', 'autofocus', 'required']); !!}
-                            @if ($errors->has('from_email'))
+                            {!! Form::text('last_name', null ,['class' => 'form-control', 'placeholder' => 'Enter last name', 'autofocus', 'required']); !!}
+                            @if ($errors->has('last_name'))
                                 <span class="help-block">
-                                    <strong>{{ $errors->first('from_email') }}</strong>
+                                    <strong>{{ $errors->first('last_name') }}</strong>
                                 </span> 
                             @endif
                             </div>
                         </div><!-- row -->   
                         <div class="row mg-t-20">
-                            {!! Form::label('feedback_email_to', 'Feedback Email to', ['class' => 'col-sm-4 form-control-label']); !!}
+                            {!! Form::label('reg_email', 'Email', ['class' => 'col-sm-4 form-control-label']); !!}
                             <div class="col-sm-8 mg-t-10 mg-sm-t-0">
-                            {!! Form::text('feedback_email_to', $email_setting ? $email_setting->feedback_email_to : null ,['class' => 'form-control', 'placeholder' => 'Enter feedback email to', 'autofocus', 'required']); !!}
-                            @if ($errors->has('feedback_email_to'))
+                            {!! Form::text('reg_email', null ,['class' => 'form-control', 'placeholder' => 'Enter email', 'autofocus', 'required']); !!}
+                            @if ($errors->has('reg_email'))
                                 <span class="help-block">
-                                    <strong>{{ $errors->first('feedback_email_to') }}</strong>
+                                    <strong>{{ $errors->first('reg_email') }}</strong>
                                 </span> 
                             @endif
                             </div>
                         </div><!-- row -->     
                         <div class="row mg-t-20">
-                            {!! Form::label('mandrill_key', 'Mandrill Key', ['class' => 'col-sm-4 form-control-label']); !!}
+                            {!! Form::label('password', 'Password', ['class' => 'col-sm-4 form-control-label']); !!}
                             <div class="col-sm-8 mg-t-10 mg-sm-t-0">
-                            {!! Form::text('mandrill_key', $email_setting ? $email_setting->mandrill_key : null,['class' => 'form-control', 'placeholder' => 'Enter name', 'autofocus', 'required']); !!}
-                            @if ($errors->has('mandrill_key'))
+                            {!! Form::password('password', null,['class' => 'form-control', 'placeholder' => 'Enter name', 'autofocus', 'required']); !!}
+                            @if ($errors->has('password'))
                                 <span class="help-block">
-                                    <strong>{{ $errors->first('mandrill_key') }}</strong>
+                                    <strong>{{ $errors->first('password') }}</strong>
+                                </span> 
+                            @endif
+                            </div>
+                        </div><!-- row --> 
+                        <div class="row mg-t-20">
+                            {!! Form::label('password_confirmation', 'Password Confirmation', ['class' => 'col-sm-4 form-control-label']); !!}
+                            <div class="col-sm-8 mg-t-10 mg-sm-t-0">
+                            {!! Form::password('password_confirmation', null,['class' => 'form-control', 'placeholder' => 'Enter name', 'autofocus', 'required']); !!}
+                            @if ($errors->has('password_confirmation'))
+                                <span class="help-block">
+                                    <strong>{{ $errors->first('password_confirmation') }}</strong>
                                 </span> 
                             @endif
                             </div>
                         </div><!-- row --> 
                         <div class="form-layout-footer mg-t-30">
-                            <button type="submit" class="btn btn-info">{{(\Request::route()->getName()=='admin.event_categories.view.create')?'Save':'Update'}}</button>
+                            <button type="submit" class="btn btn-info">Save</button>
                             <button class="btn btn-secondary">Cancel</button>
                         </div><!-- form-layout-footer -->
                     </div><!-- form-layout -->

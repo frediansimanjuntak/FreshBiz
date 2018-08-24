@@ -5,6 +5,9 @@
 <link href="{{ asset ('assets/admin/lib/highlightjs/github.css') }}" rel="stylesheet">
 <link href="{{ asset ('assets/admin/lib/datatables/jquery.dataTables.css') }}" rel="stylesheet">
 <link href="{{ asset ('assets/admin/lib/select2/css/select2.min.css') }}" rel="stylesheet">
+<link href="{{ asset ('assets/admin/lib/medium-editor/medium-editor.css') }}" rel="stylesheet">
+<link href="{{ asset ('assets/admin/lib/medium-editor/default.css') }}" rel="stylesheet">
+<link href="{{ asset ('assets/admin/lib/summernote/summernote-bs4.css') }}" rel="stylesheet">
 <!-- /style -->
 @endsection
 
@@ -34,7 +37,7 @@
         <p class="mg-b-0">{{(\Request::route()->getName()=='admin.event_organisers.view.create')?'Create New Data':'Edit Data'}}</p>
     </div>
     
-    <div class="col-md-6">
+    <div class="col-md-12">
     <div class="br-pagebody">
         <div class="br-section-wrapper">
             <div class="row">
@@ -100,18 +103,7 @@
                                 </span> 
                             @endif
                             </div>
-                        </div><!-- row -->     
-                        <div class="row mg-t-20">
-                            {!! Form::label('description', 'Description', ['class' => 'col-sm-4 form-control-label']); !!}
-                            <div class="col-sm-8 mg-t-10 mg-sm-t-0">
-                            {!! Form::textarea('description',\Request::route()->getName()=='admin.event_organisers.view.create' ? null : $eo->description,['class'=>'form-control', 'rows' => 2, 'placeholder' => 'Enter Description']) !!}
-                            @if ($errors->has('description'))
-                                <span class="help-block">
-                                    <strong>{{ $errors->first('description') }}</strong>
-                                </span> 
-                            @endif
-                            </div>
-                        </div>
+                        </div><!-- row -->    
                         <div class="row mg-t-20">
                             {!! Form::label('user_key', 'User', ['class' => 'col-sm-4 form-control-label']); !!}
                             <div class="col-sm-8 mg-t-10 mg-sm-t-0">
@@ -134,7 +126,19 @@
                                     </span> 
                                 @endif
                             </div>
-                        </div><!-- row -->   
+                        </div><!-- row -->  
+                        <div class="row mg-t-20">
+                            {!! Form::label('description', 'Description', ['class' => 'col-sm-4 form-control-label']); !!}
+                            <div class="col-sm-8 mg-t-10 mg-sm-t-0">
+                                <div id="summernote">Hello, universe!</div>
+                            {{-- {!! Form::textarea('description',\Request::route()->getName()=='admin.event_organisers.view.create' ? null : $eo->description,['class'=>'form-control', 'rows' => 2, 'placeholder' => 'Enter Description']) !!} --}}
+                            @if ($errors->has('description'))
+                                <span class="help-block">
+                                    <strong>{{ $errors->first('description') }}</strong>
+                                </span> 
+                            @endif
+                            </div>
+                        </div>  
                         <div class="form-layout-footer mg-t-30">
                             <button type="submit" class="btn btn-info">{{(\Request::route()->getName()=='admin.event_organisers.view.create')?'Save':'Update'}}</button>
                             <button class="btn btn-secondary">Cancel</button>
@@ -154,6 +158,7 @@
 @section('pagespecificscripts')
 <script src="{{ asset ('assets/admin/lib/highlightjs/highlight.pack.js') }}"></script>
 <script src="{{ asset ('assets/admin/lib/select2/js/select2.min.js') }}"></script>
+<script src="{{ asset ('assets/admin/lib/medium-editor/medium-editor.js') }}"></script>
 
 <script src="{{ asset ('assets/admin/js/bracket.js') }}"></script>
 <script>
@@ -183,4 +188,18 @@
 
     });
 </script>
+<script>
+    $(function(){
+      'use strict';
+
+      // Inline editor
+      var editor = new MediumEditor('.editable');
+
+      // Summernote editor
+      $('#summernote').summernote({
+        height: 150,
+        tooltip: false
+      })
+    });
+  </script>
 @endsection

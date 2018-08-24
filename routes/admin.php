@@ -30,6 +30,19 @@ Route::group(['prefix' => 'admin', 'middleware' => 'admin', 'namespace' => 'Admi
             }); 
         }); 
 
+        Route::group(['prefix' => 'event', 'namespace' => 'Event'], function () { 
+            Route::name('event.view.')->group(function () {                
+                Route::get('/list', 'EventController@index')->name('list');
+                Route::get('/create', 'EventController@view_create')->name('create');
+                Route::get('/update', 'EventController@view_update')->name('update');
+            });  
+            Route::name('event.func.')->group(function () { 
+                Route::post('/create', 'EventController@create')->name('create');   
+                Route::put('/update', 'EventController@update')->name('update'); 
+                Route::post('/delete', 'EventController@delete')->name('delete');     
+            }); 
+        }); 
+
         Route::group(['prefix' => 'website_setting', 'namespace' => 'WebsiteSetting'], function () { 
             Route::name('setting.website.view.')->group(function () {                
                 Route::get('/setting/website', 'WebsiteSettingController@view_update')->name('update');

@@ -131,12 +131,12 @@
                             {!! Form::label('description', 'Description', ['class' => 'col-sm-4 form-control-label']); !!}
                             <div class="col-sm-8 mg-t-10 mg-sm-t-0">
                                 <div id="summernote">Hello, universe!</div>
-                            {{-- {!! Form::textarea('description',\Request::route()->getName()=='admin.event_organisers.view.create' ? null : $eo->description,['class'=>'form-control', 'rows' => 2, 'placeholder' => 'Enter Description']) !!} --}}
-                            @if ($errors->has('description'))
-                                <span class="help-block">
-                                    <strong>{{ $errors->first('description') }}</strong>
-                                </span> 
-                            @endif
+                                {{-- {!! Form::textarea('description',\Request::route()->getName()=='admin.event_organisers.view.create' ? null : $eo->description,['class'=>'form-control', 'rows' => 2, 'placeholder' => 'Enter Description']) !!} --}}
+                                @if ($errors->has('description'))
+                                    <span class="help-block">
+                                        <strong>{{ $errors->first('description') }}</strong>
+                                    </span> 
+                                @endif
                             </div>
                         </div>  
                         <div class="form-layout-footer mg-t-30">

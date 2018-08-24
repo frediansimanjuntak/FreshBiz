@@ -189,7 +189,7 @@
                             @endif
                             </div>
                         </div>  
-                        <div class="form-layout-footer mg-t-30">
+                        <div class="form-layout-footer mg-t-30 text-right">
                             <button type="submit" class="btn btn-info">{{(\Request::route()->getName()=='admin.event.view.create')?'Save':'Update'}}</button>
                             <button class="btn btn-secondary">Cancel</button>
                         </div><!-- form-layout-footer -->

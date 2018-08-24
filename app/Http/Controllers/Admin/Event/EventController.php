@@ -29,8 +29,8 @@ class EventController extends Controller
      */
     public function index()
     {
-        $event_organisers = EventOrganiser::get();
-        return view('admin.event.index', ['event_organisers'=>$event_organisers]);
+        $events = Events::get();
+        return view('admin.event.index', ['events'=>$events]);
     }
 
     public function view_create(Request $request)
@@ -41,9 +41,9 @@ class EventController extends Controller
 
     public function view_update(Request $request)
     {        
-        $organizer = EventOrganiser::where('key', $request['organizer'])->first();
+        $event = Events::where('key', $request['event'])->first();
         $users = User::get();
-        return view('admin.event.form', ['organizer'=>$organizer, 'users'=>$users]);
+        return view('admin.event.form', ['event'=>$event, 'users'=>$users]);
     }
 
     public function create(Request $request, Events $event)

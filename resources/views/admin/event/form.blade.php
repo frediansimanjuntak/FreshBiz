@@ -60,7 +60,56 @@
                                 </span> 
                             @endif
                             </div>
-                        </div><!-- row -->    
+                        </div><!-- row --> 
+                          
+                        <div class="row mg-t-20">
+                            {!! Form::label('eo_key', 'Event Organizer', ['class' => 'col-sm-4 form-control-label']); !!}
+                            <div class="col-sm-8 mg-t-10 mg-sm-t-0">
+                                <select class="form-control select2-show-search" name="eo_key" data-placeholder="Choose event organizer">
+                                    @foreach ($event_organisers as $eo)    
+                                        @if(\Request::route()->getName()=='admin.event.view.update')  
+                                            <option value={{$event->eo_key}}>{{$event->event_organizer->name}}</option>  
+                                            <option label="Choose event organizer"></option>
+                                            @if($eo->key != $event->eo_key)  
+                                                <option value={{$eo->key}}>{{$eo->name}}</option>
+                                            @endif
+                                        @else
+                                            <option label="Choose event organizer"></option>
+                                            <option value={{$eo->key}}>{{$eo->name}}</option>
+                                        @endif
+                                    @endforeach
+                                </select>
+                                @if ($errors->has('eo_key'))
+                                    <span class="help-block">
+                                        <strong>{{ $errors->first('eo_key') }}</strong>
+                                    </span> 
+                                @endif
+                            </div>
+                        </div><!-- row -->  
+                        <div class="row mg-t-20">
+                            {!! Form::label('event_category_key', 'Event Category', ['class' => 'col-sm-4 form-control-label']); !!}
+                            <div class="col-sm-8 mg-t-10 mg-sm-t-0">
+                                <select class="form-control select2-show-search" name="event_category_key" data-placeholder="Choose event category">
+                                    @foreach ($event_categories as $event_category)    
+                                        @if(\Request::route()->getName()=='admin.event.view.update')  
+                                            <option value={{$event->event_category_key}}>{{$event->event_category->name}}</option>  
+                                            <option label="Choose event category"></option>
+                                            @if($event_category->key != $event->event_category_key)  
+                                                <option value={{$event_category->key}}>{{$event_category->name}}</option>
+                                            @endif
+                                        @else
+                                            <option label="Choose event category"></option>
+                                            <option value={{$event_category->key}}>{{$event_category->name}}</option>
+                                        @endif
+                                    @endforeach
+                                </select>
+                                @if ($errors->has('event_category_key'))
+                                    <span class="help-block">
+                                        <strong>{{ $errors->first('event_category_key') }}</strong>
+                                    </span> 
+                                @endif
+                            </div>
+                        </div><!-- row -->     
                         <div class="row mg-t-20">
                             {!! Form::label('location', 'Location', ['class' => 'col-sm-4 form-control-label']); !!}
                             <div class="col-sm-8 mg-t-10 mg-sm-t-0">
@@ -125,54 +174,6 @@
                                     <strong>{{ $errors->first('tags') }}</strong>
                                 </span> 
                             @endif
-                            </div>
-                        </div><!-- row -->    
-                        <div class="row mg-t-20">
-                            {!! Form::label('eo_key', 'Event Organizer', ['class' => 'col-sm-4 form-control-label']); !!}
-                            <div class="col-sm-8 mg-t-10 mg-sm-t-0">
-                                <select class="form-control select2-show-search" name="eo_key" data-placeholder="Choose event organizer">
-                                    @foreach ($event_organisers as $eo)    
-                                        @if(\Request::route()->getName()=='admin.event.view.update')  
-                                            <option value={{$event->eo_key}}>{{$event->event_organizer->name}}</option>  
-                                            <option label="Choose event organizer"></option>
-                                            @if($eo->key != $event->eo_key)  
-                                                <option value={{$eo->key}}>{{$eo->name}}</option>
-                                            @endif
-                                        @else
-                                            <option label="Choose event organizer"></option>
-                                            <option value={{$eo->key}}>{{$eo->name}}</option>
-                                        @endif
-                                    @endforeach
-                                </select>
-                                @if ($errors->has('eo_key'))
-                                    <span class="help-block">
-                                        <strong>{{ $errors->first('eo_key') }}</strong>
-                                    </span> 
-                                @endif
-                            </div>
-                        </div><!-- row -->  
-                        <div class="row mg-t-20">
-                            {!! Form::label('event_category_key', 'Event Category', ['class' => 'col-sm-4 form-control-label']); !!}
-                            <div class="col-sm-8 mg-t-10 mg-sm-t-0">
-                                <select class="form-control select2-show-search" name="event_category_key" data-placeholder="Choose event category">
-                                    @foreach ($event_categories as $event_category)    
-                                        @if(\Request::route()->getName()=='admin.event.view.update')  
-                                            <option value={{$event->event_category_key}}>{{$event->event_category->name}}</option>  
-                                            <option label="Choose event category"></option>
-                                            @if($event_category->key != $event->event_category_key)  
-                                                <option value={{$event_category->key}}>{{$event_category->name}}</option>
-                                            @endif
-                                        @else
-                                            <option label="Choose event category"></option>
-                                            <option value={{$event_category->key}}>{{$event_category->name}}</option>
-                                        @endif
-                                    @endforeach
-                                </select>
-                                @if ($errors->has('event_category_key'))
-                                    <span class="help-block">
-                                        <strong>{{ $errors->first('event_category_key') }}</strong>
-                                    </span> 
-                                @endif
                             </div>
                         </div><!-- row -->  
                         <div class="row mg-t-20">

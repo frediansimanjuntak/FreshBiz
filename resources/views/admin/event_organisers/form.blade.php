@@ -1,5 +1,5 @@
 @extends('layouts.admin.index')
-@section('title', (\Request::route()->getName()=='admin.event_organisers.view.create')?'Create':'Edit' . 'Event Organisers') 
+@section('title', (\Request::route()->getName()=='admin.event_organisers.view.create')?'Create Event Organisers':'Edit Event Organisers' ) 
 @section('pagespecificstyles') 
 <!-- style -->
 <link href="{{ asset ('assets/admin/lib/highlightjs/github.css') }}" rel="stylesheet">
@@ -45,8 +45,8 @@
                     @if(\Request::route()->getName()=='admin.event_organisers.view.create') 
                         {!! Form::open(['route' => 'admin.event_organisers.func.create', 'method' => 'POST', 'id' => 'event_organisers_form', 'enctype' => 'multipart/form-data']) !!}
                     @elseif(\Request::route()->getName()=='admin.event_organisers.view.update')
-                        {!! Form::open(['route' => 'admin.event_organisers.func.update', 'method' => 'PUT', 'id' => 'eevent_organiserss_form', 'enctype' => 'multipart/form-data']) !!}
-                        {{ Form::hidden('eo', $eo->key) }}
+                        {!! Form::open(['route' => 'admin.event_organisers.func.update', 'method' => 'PUT', 'id' => 'event_organiserss_form', 'enctype' => 'multipart/form-data']) !!}
+                        {{ Form::hidden('eo_key', $eo->key) }}
                     @endif  
                     <div class="form-layout form-layout-4">
                         <div class="row">

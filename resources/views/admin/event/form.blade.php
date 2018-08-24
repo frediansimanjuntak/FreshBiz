@@ -8,6 +8,7 @@
 <link href="{{ asset ('assets/admin/lib/medium-editor/medium-editor.css') }}" rel="stylesheet">
 <link href="{{ asset ('assets/admin/lib/medium-editor/default.css') }}" rel="stylesheet">
 <link href="{{ asset ('assets/admin/lib/summernote/summernote-bs4.css') }}" rel="stylesheet">
+<link href="{{ asset ('assets/admin/lib/bootstrap-tagsinput/bootstrap-tagsinput.css') }}" rel="stylesheet">
 <!-- /style -->
 @endsection
 
@@ -74,7 +75,7 @@
                         <div class="row mg-t-20">
                             {!! Form::label('date_start', 'Date Start', ['class' => 'col-sm-4 form-control-label']); !!}
                             <div class="col-sm-8 mg-t-10 mg-sm-t-0">
-                            {!! Form::text('date_start', \Request::route()->getName()=='admin.event.view.create' ? null : $event->date_start ,['class' => 'form-control', 'placeholder' => 'Enter date', 'autofocus', 'required']); !!}
+                            {!! Form::date('date_start', \Request::route()->getName()=='admin.event.view.create' ? null : $event->date_start ,['class' => 'form-control', 'placeholder' => 'Enter date', 'autofocus', 'required']); !!}
                             @if ($errors->has('date_start'))
                                 <span class="help-block">
                                     <strong>{{ $errors->first('date_start') }}</strong>
@@ -85,7 +86,7 @@
                         <div class="row mg-t-20">
                             {!! Form::label('date_end', 'Date End', ['class' => 'col-sm-4 form-control-label']); !!}
                             <div class="col-sm-8 mg-t-10 mg-sm-t-0">
-                            {!! Form::text('date_end', \Request::route()->getName()=='admin.event.view.create' ? null : $event->date_end ,['class' => 'form-control', 'placeholder' => 'Enter date', 'autofocus', 'required']); !!}
+                            {!! Form::date('date_end', \Request::route()->getName()=='admin.event.view.create' ? null : $event->date_end ,['class' => 'form-control', 'placeholder' => 'Enter date', 'autofocus', 'required']); !!}
                             @if ($errors->has('date_end'))
                                 <span class="help-block">
                                     <strong>{{ $errors->first('date_end') }}</strong>
@@ -96,7 +97,7 @@
                         <div class="row mg-t-20">
                             {!! Form::label('time_start', 'Time Start', ['class' => 'col-sm-4 form-control-label']); !!}
                             <div class="col-sm-8 mg-t-10 mg-sm-t-0">
-                            {!! Form::text('time_start', \Request::route()->getName()=='admin.event.view.create' ? null : $event->time_start ,['class' => 'form-control', 'placeholder' => 'Enter date', 'autofocus', 'required']); !!}
+                            {!! Form::time('time_start', \Request::route()->getName()=='admin.event.view.create' ? null : $event->time_start ,['class' => 'form-control', 'placeholder' => 'Enter date', 'autofocus', 'required']); !!}
                             @if ($errors->has('time_start'))
                                 <span class="help-block">
                                     <strong>{{ $errors->first('time_start') }}</strong>
@@ -107,7 +108,7 @@
                         <div class="row mg-t-20">
                             {!! Form::label('time_end', 'Time End', ['class' => 'col-sm-4 form-control-label']); !!}
                             <div class="col-sm-8 mg-t-10 mg-sm-t-0">
-                            {!! Form::text('time_end', \Request::route()->getName()=='admin.event.view.create' ? null : $event->time_end ,['class' => 'form-control', 'placeholder' => 'Enter date', 'autofocus', 'required']); !!}
+                            {!! Form::time('time_end', \Request::route()->getName()=='admin.event.view.create' ? null : $event->time_end ,['class' => 'form-control', 'placeholder' => '00:00 PM', 'autofocus', 'required']); !!}
                             @if ($errors->has('time_end'))
                                 <span class="help-block">
                                     <strong>{{ $errors->first('time_end') }}</strong>
@@ -118,7 +119,7 @@
                         <div class="row mg-t-20">
                             {!! Form::label('tags', 'Tags', ['class' => 'col-sm-4 form-control-label']); !!}
                             <div class="col-sm-8 mg-t-10 mg-sm-t-0">
-                            {!! Form::text('tags', \Request::route()->getName()=='admin.event.view.create' ? null : $event->tags ,['class' => 'form-control', 'placeholder' => 'Enter Tags', 'autofocus', 'required']); !!}
+                            {!! Form::text('tags', \Request::route()->getName()=='admin.event.view.create' ? null : $event->tags ,['class' => 'form-control', 'placeholder' => 'Enter Tags', 'data-role'=>'tagsinput', 'autofocus', 'required']); !!}
                             @if ($errors->has('tags'))
                                 <span class="help-block">
                                     <strong>{{ $errors->first('tags') }}</strong>
@@ -174,14 +175,15 @@
                         </div><!-- row -->  
                         <div class="row mg-t-20">
                             {!! Form::label('description', 'Description', ['class' => 'col-sm-4 form-control-label']); !!}
-                            <div class="col-sm-8 mg-t-10 mg-sm-t-0">
-                                <div id="summernote">Hello, universe!</div>
-                                {{-- {!! Form::textarea('description',\Request::route()->getName()=='admin.event.view.create' ? null : $eo->description,['class'=>'form-control', 'rows' => 2, 'placeholder' => 'Enter Description']) !!} --}}
-                                @if ($errors->has('description'))
-                                    <span class="help-block">
-                                        <strong>{{ $errors->first('description') }}</strong>
-                                    </span> 
-                                @endif
+                        </div>  
+                        <div class="row mg-t-20">
+                            <div class="col-sm-12 mg-t-12 mg-sm-t-0">                                
+                            {!! Form::textarea('description',\Request::route()->getName()=='admin.event.view.create' ? null : $event->description,['id'=>'summernote', 'class'=>'form-control', 'rows' => 2, 'placeholder' => 'Enter Description']) !!}
+                            @if ($errors->has('description'))
+                                <span class="help-block">
+                                    <strong>{{ $errors->first('description') }}</strong>
+                                </span> 
+                            @endif
                             </div>
                         </div>  
                         <div class="form-layout-footer mg-t-30">
@@ -204,6 +206,7 @@
 <script src="{{ asset ('assets/admin/lib/highlightjs/highlight.pack.js') }}"></script>
 <script src="{{ asset ('assets/admin/lib/select2/js/select2.min.js') }}"></script>
 <script src="{{ asset ('assets/admin/lib/medium-editor/medium-editor.js') }}"></script>
+<script src="{{ asset ('assets/admin/lib/bootstrap-tagsinput/bootstrap-tagsinput.js') }}"></script>
 
 <script src="{{ asset ('assets/admin/js/bracket.js') }}"></script>
 <script>
@@ -242,7 +245,7 @@
 
       // Summernote editor
       $('#summernote').summernote({
-        height: 150,
+        height: 250,
         tooltip: false
       })
     });

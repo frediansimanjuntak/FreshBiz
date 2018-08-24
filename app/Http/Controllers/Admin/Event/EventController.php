@@ -7,6 +7,8 @@ use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\Controller;
 use App\Models\Events;
+use App\Models\EventCategories;
+use App\Models\EventOrganiser;
 use GlobalHelpers;
 use CrudHelpers;
 
@@ -35,15 +37,17 @@ class EventController extends Controller
 
     public function view_create(Request $request)
     {        
-        $users = User::get();
-        return view('admin.event.form', ['users'=>$users]);
+        $event_categories = EventCategories::get();
+        $event_organisers = EventOrganiser::get();
+        return view('admin.event.form', ['event_categories'=>$event_categories, 'event_organisers'=>$event_organisers]);
     }
 
     public function view_update(Request $request)
     {        
         $event = Events::where('key', $request['event'])->first();
-        $users = User::get();
-        return view('admin.event.form', ['event'=>$event, 'users'=>$users]);
+        $event_categories = EventCategories::get();
+        $event_organisers = EventOrganiser::get();
+        return view('admin.event.form', ['event'=>$event, 'event_categories'=>$event_categories, 'event_organisers'=>$event_organisers]);
     }
 
     public function create(Request $request, Events $event)

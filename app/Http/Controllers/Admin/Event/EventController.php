@@ -11,6 +11,7 @@ use App\Models\EventCategories;
 use App\Models\EventOrganiser;
 use GlobalHelpers;
 use CrudHelpers;
+use AttachmentHelpers;
 
 class EventController extends Controller
 {
@@ -69,6 +70,17 @@ class EventController extends Controller
                             ->withErrors($validator)
                             ->withInput();
             } 
+            
+            $attachment = '';
+            // dd($request->file('attachment'));
+            if ($request->file('attachment')) {
+                $image = AttachmentHelpers::store('attachment', $request->file('attachment'));
+                // dd($logo);
+                // var_dump($logo); die();
+                $attachment = $image;
+            }
+            $data['image'] = $attachment;
+
             $data['key'] = GlobalHelpers::randomString($event, 10);
             $result = CrudHelpers::create($event, $data);
             return $result['success']==false ? redirect()->back()->withInput()->withErrors(['error' => $result['message']]) : redirect()->route('admin.event.view.list'); 

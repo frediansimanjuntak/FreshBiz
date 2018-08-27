@@ -211,7 +211,8 @@ return [
         'View' => Illuminate\Support\Facades\View::class,        
         'GlobalHelpers' => App\Helpers\GlobalHelpers::class,  
         'QsApiHelpers' => App\Helpers\QsApiHelpers::class,         
-        'CrudHelpers' => App\Helpers\CrudHelpers::class,
+        'CrudHelpers' => App\Helpers\CrudHelpers::class,       
+        'AttachmentHelpers' => App\Helpers\AttachmentHelpers::class,
         'Form' => Collective\Html\FormFacade::class,
         'Html' => Collective\Html\HtmlFacade::class,
 

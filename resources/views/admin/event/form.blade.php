@@ -49,7 +49,7 @@
                 {{ Form::hidden('eo_key', $eo->key) }}
             @endif  
             <div class="row">
-                <div class="col-xl-6">
+                <div class="col-xl-6 mg-b-30">
                     <div class="form-layout">                        
                         <h6 class="tx-gray-800 tx-uppercase tx-bold tx-14 mg-b-10">Detail Event</h6>
                         <div class="row">
@@ -174,18 +174,15 @@
                     </div><!-- form-layout -->
                 </div><!-- col-6 -->        
                 
-                <div class="col-xl-6 ">
+                <div class="col-xl-6 mg-b-30">
                     <div class="form-layout"> 
                         <h6 class="tx-gray-800 tx-uppercase tx-bold tx-14 mg-b-10">Upload Image</h6>
                         <p class="mg-b-30 tx-gray-600">Upload an image for banner. <span style="color: red">*(800px X 500px)</span></p>  
                         <div class="row mg-t-20">
-                            <div class="col-sm-12 mg-t-10 mg-sm-t-0">    
+                            <div class="col-sm-12 mg-t-5 mg-sm-t-0">    
                                 <img id="preview" src="{{asset ('assets/admin/img/img12.jpg')}}" class="img-responsive" height="250" width="400px"/><br/>
-                                    <input type="file" id="image" name="attachment" style="display: none;"/>
-                                    <br>
-                                    <!--<input type="hidden" style="display: none" value="0" name="remove" id="remove">-->
-                                    <a href="javascript:changeProfile()" class="btn btn-primary">Upload</a>
-                                    <a href="javascript:removeImage()" class="btn btn-danger">Remove</a>
+                                <input type="file" id="image" name="attachment" style="display: none;"/>
+                                <br>
                                 @if ($errors->has('image'))
                                     <span class="help-block">
                                         <strong>{{ $errors->first('image') }}</strong>
@@ -193,9 +190,15 @@
                                 @endif                                                            
                             </div>
                         </div>
+                        <div class="row mg-t-10">
+                            <div class="col-sm-12 mg-t-5 mg-sm-t-0">    
+                                <a href="javascript:changeProfile()" class="btn btn-primary">Upload</a>
+                                <a href="javascript:removeImage()" class="btn btn-danger">Remove</a>
+                            </div>
+                        </div>
                     </div><!-- form-layout -->
                 </div><!-- col-6 --> 
-                <div class="col-xl-12 mg-t-30">
+                <div class="col-xl-12">
                     <div class="form-layout">  
                         <h6 class="tx-gray-800 tx-uppercase tx-bold tx-14 mg-b-10">Description</h6>
                         <p class="mg-b-30 tx-gray-600">Describe the detail of event.</span></p> 

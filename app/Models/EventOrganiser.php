@@ -31,4 +31,9 @@ class EventOrganiser extends Model
     {
         return $this->belongsTo('App\Models\User', 'user_key');
     }
+
+    public function event()
+    {
+        return $this->hasMany('App\Models\Events');
+    }
 }

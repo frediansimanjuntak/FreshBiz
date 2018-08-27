@@ -1,10 +1,13 @@
 @extends('layouts.admin.index')
-@section('title', (\Request::route()->getName()=='admin.event_organisers.view.create')?'Create':'Edit' . 'Event Organisers') 
+@section('title', (\Request::route()->getName()=='admin.event_organisers.view.create')?'Create Event Organisers':'Edit Event Organisers' ) 
 @section('pagespecificstyles') 
 <!-- style -->
 <link href="{{ asset ('assets/admin/lib/highlightjs/github.css') }}" rel="stylesheet">
 <link href="{{ asset ('assets/admin/lib/datatables/jquery.dataTables.css') }}" rel="stylesheet">
 <link href="{{ asset ('assets/admin/lib/select2/css/select2.min.css') }}" rel="stylesheet">
+<link href="{{ asset ('assets/admin/lib/medium-editor/medium-editor.css') }}" rel="stylesheet">
+<link href="{{ asset ('assets/admin/lib/medium-editor/default.css') }}" rel="stylesheet">
+<link href="{{ asset ('assets/admin/lib/summernote/summernote-bs4.css') }}" rel="stylesheet">
 <!-- /style -->
 @endsection
 
@@ -34,7 +37,7 @@
         <p class="mg-b-0">{{(\Request::route()->getName()=='admin.event_organisers.view.create')?'Create New Data':'Edit Data'}}</p>
     </div>
     
-    <div class="col-md-6">
+    <div class="col-md-12">
     <div class="br-pagebody">
         <div class="br-section-wrapper">
             <div class="row">
@@ -42,8 +45,8 @@
                     @if(\Request::route()->getName()=='admin.event_organisers.view.create') 
                         {!! Form::open(['route' => 'admin.event_organisers.func.create', 'method' => 'POST', 'id' => 'event_organisers_form', 'enctype' => 'multipart/form-data']) !!}
                     @elseif(\Request::route()->getName()=='admin.event_organisers.view.update')
-                        {!! Form::open(['route' => 'admin.event_organisers.func.update', 'method' => 'PUT', 'id' => 'eevent_organiserss_form', 'enctype' => 'multipart/form-data']) !!}
-                        {{ Form::hidden('eo', $eo->key) }}
+                        {!! Form::open(['route' => 'admin.event_organisers.func.update', 'method' => 'PUT', 'id' => 'event_organiserss_form', 'enctype' => 'multipart/form-data']) !!}
+                        {{ Form::hidden('eo_key', $eo->key) }}
                     @endif  
                     <div class="form-layout form-layout-4">
                         <div class="row">
@@ -82,7 +85,7 @@
                         <div class="row mg-t-20">
                             {!! Form::label('email', 'Email', ['class' => 'col-sm-4 form-control-label']); !!}
                             <div class="col-sm-8 mg-t-10 mg-sm-t-0">
-                            {!! Form::text('email', \Request::route()->getName()=='admin.event_organisers.view.create' ? null : $eo->email ,['class' => 'form-control', 'placeholder' => 'Enter email', 'autofocus', 'required']); !!}
+                            {!! Form::email('email', \Request::route()->getName()=='admin.event_organisers.view.create' ? null : $eo->email ,['class' => 'form-control', 'placeholder' => 'Enter email', 'autofocus', 'required']); !!}
                             @if ($errors->has('email'))
                                 <span class="help-block">
                                     <strong>{{ $errors->first('email') }}</strong>
@@ -100,33 +103,23 @@
                                 </span> 
                             @endif
                             </div>
-                        </div><!-- row -->     
-                        <div class="row mg-t-20">
-                            {!! Form::label('description', 'Description', ['class' => 'col-sm-4 form-control-label']); !!}
-                            <div class="col-sm-8 mg-t-10 mg-sm-t-0">
-                            {!! Form::textarea('description',\Request::route()->getName()=='admin.event_organisers.view.create' ? null : $eo->description,['class'=>'form-control', 'rows' => 2, 'placeholder' => 'Enter Description']) !!}
-                            @if ($errors->has('description'))
-                                <span class="help-block">
-                                    <strong>{{ $errors->first('description') }}</strong>
-                                </span> 
-                            @endif
-                            </div>
-                        </div>
+                        </div><!-- row -->    
                         <div class="row mg-t-20">
                             {!! Form::label('user_key', 'User', ['class' => 'col-sm-4 form-control-label']); !!}
                             <div class="col-sm-8 mg-t-10 mg-sm-t-0">
-                                <select class="form-control select2-show-search" name="user_key" data-placeholder="Choose one (with searchbox)">
-                                    @if(\Request::route()->getName()=='admin.event_organisers.view.create')
-                                        @foreach ($users as $user)      
-                                            <option value={{$user->key}}>{{$user->name}}</option>
-                                        @endforeach
-                                    @else
-                                        @foreach ($users as $user)    
+                                <select class="form-control select2-show-search" name="user_key" data-placeholder="Choose user">
+                                    @foreach ($users as $user)    
+                                        @if(\Request::route()->getName()=='admin.event_organisers.view.update')  
+                                            <option value={{$eo->user_key}}>{{$eo->user->name}}</option>  
+                                            <option label="Choose one"></option>
                                             @if($user->key != $eo->user_key)  
                                                 <option value={{$user->key}}>{{$user->name}}</option>
                                             @endif
-                                        @endforeach    
-                                    @endif
+                                        @else
+                                            <option label="Choose one"></option>
+                                            <option value={{$user->key}}>{{$user->name}}</option>
+                                        @endif
+                                    @endforeach
                                 </select>
                                 @if ($errors->has('user_key'))
                                     <span class="help-block">
@@ -134,7 +127,21 @@
                                     </span> 
                                 @endif
                             </div>
-                        </div><!-- row -->   
+                        </div><!-- row -->  
+                        
+                        <div class="row mg-t-20">
+                            {!! Form::label('description', 'Description', ['class' => 'col-sm-4 form-control-label']); !!}
+                        </div>  
+                        <div class="row mg-t-20">
+                            <div class="col-sm-12 mg-t-12 mg-sm-t-0">                                
+                            {!! Form::textarea('description',\Request::route()->getName()=='admin.event_organisers.view.create' ? null : $eo->description,['id'=>'summernote', 'class'=>'form-control', 'rows' => 2, 'placeholder' => 'Enter Description']) !!}
+                            @if ($errors->has('description'))
+                                <span class="help-block">
+                                    <strong>{{ $errors->first('description') }}</strong>
+                                </span> 
+                            @endif
+                            </div>
+                        </div>  
                         <div class="form-layout-footer mg-t-30">
                             <button type="submit" class="btn btn-info">{{(\Request::route()->getName()=='admin.event_organisers.view.create')?'Save':'Update'}}</button>
                             <button class="btn btn-secondary">Cancel</button>
@@ -154,6 +161,7 @@
 @section('pagespecificscripts')
 <script src="{{ asset ('assets/admin/lib/highlightjs/highlight.pack.js') }}"></script>
 <script src="{{ asset ('assets/admin/lib/select2/js/select2.min.js') }}"></script>
+<script src="{{ asset ('assets/admin/lib/medium-editor/medium-editor.js') }}"></script>
 
 <script src="{{ asset ('assets/admin/js/bracket.js') }}"></script>
 <script>
@@ -183,4 +191,18 @@
 
     });
 </script>
+<script>
+    $(function(){
+      'use strict';
+
+      // Inline editor
+      var editor = new MediumEditor('.editable');
+
+      // Summernote editor
+      $('#summernote').summernote({
+        height: 250,
+        tooltip: false
+      })
+    });
+  </script>
 @endsection

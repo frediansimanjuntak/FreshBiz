@@ -4,14 +4,13 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
-class EventCategories extends Model
+class Events extends Model
 {
-    //    
     protected $primaryKey = 'key';
     public $incrementing = false;
     const UPDATED_AT = 'updated_at';
     protected $fillable = [
-        'key', 'name', 'description', 'disabled'
+        'key', 'title', 'description', 'date_start', 'date_end', 'time_start', 'time_end', 'location', 'tags', 'image', 'private', 'disabled', 'eo_key', 'event_category_key'
     ];
     protected $hidden = [
 
@@ -27,8 +26,13 @@ class EventCategories extends Model
         'created_at', 'updated_at', 
     ];
 
-    public function event()
+    public function event_organizer()
     {
-        return $this->hasMany('App\Models\Events');
+        return $this->belongsTo('App\Models\EventOrganiser', 'eo_key');
+    }
+
+    public function event_category()
+    {
+        return $this->belongsTo('App\Models\EventCategories', 'event_category_key');
     }
 }

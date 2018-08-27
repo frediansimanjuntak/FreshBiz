@@ -67,12 +67,17 @@ class EventOrganisersController extends Controller
                             ->withErrors($validator)
                             ->withInput();
             } 
-            $data['key'] = GlobalHelpers::randomString($event_organisers, 10);
-            $result = CrudHelpers::create($event_organisers, $data);
-            return $result['success']==false ? redirect()->back()->withInput()->withErrors(['error' => $result['message']]) : redirect()->route('admin.event_organisers.view.list'); 
+            $validation_user = EventOrganiser::where('user_key', $data['user_key'])->first();
+            if ($validation_user) {
+                return redirect()->back()->withInput()->withErrors(['error' => "User was available"]);
+            }
+            else {
+                $data['key'] = GlobalHelpers::randomString($event_organisers, 10);
+                $result = CrudHelpers::create($event_organisers, $data);
+                return $result['success']==false ? redirect()->back()->withInput()->withErrors(['error' => $result['message']]) : redirect()->route('admin.event_organisers.view.list'); 
+            }
     	}
     	catch (\Exception $e) {
-            dd($e->getMessage());
 			return redirect()->back()->withInput()->withErrors(['error' => $e->getMessage()]);
     	}    	
     }
@@ -96,8 +101,8 @@ class EventOrganisersController extends Controller
                             ->withErrors($validator)
                             ->withInput();
             } 
-            $key = $data['organizer'];
-            unset($data['_method'], $data['_token'], $data['organizer']);
+            $key = $data['eo_key'];
+            unset($data['_method'], $data['_token'], $data['eo_key']);
             $result = CrudHelpers::update($event_organisers,'key', $key, $data);
             return $result['success']==false ? redirect()->back()->withInput()->withErrors(['error' => $result['message']]) : redirect()->route('admin.event_organisers.view.list'); 
     	}

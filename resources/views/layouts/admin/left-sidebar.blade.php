@@ -9,7 +9,7 @@
                 <span class="menu-item-label">Dashboard</span>
             </div><!-- menu-item -->
         </a><!-- br-menu-link -->    
-        <a href="#" class="br-menu-link">
+        <a href="#" class="br-menu-link {{ GlobalHelpers::set_active(['admin.event.view.list', 'admin.event.view.create']) }}">
             <div class="br-menu-item">
                 <i class="menu-item-icon icon ion-coffee tx-24"></i>
                 <span class="menu-item-label">Events</span>
@@ -17,8 +17,8 @@
             </div><!-- menu-item -->
         </a><!-- br-menu-link -->
         <ul class="br-menu-sub nav flex-column">
-            <li class="nav-item"><a href="accordion.html" class="nav-link">List</a></li>
-            <li class="nav-item"><a href="alerts.html" class="nav-link">Create</a></li>
+            <li class="nav-item"><a href="{{route('admin.event.view.list')}}" class="nav-link">List</a></li>
+            <li class="nav-item"><a href="{{route('admin.event.view.create')}}" class="nav-link">Create</a></li>
         </ul>
         <a href="#" class="br-menu-link {{ GlobalHelpers::set_active(['admin.event_categories.view.list', 'admin.event_categories.view.create']) }}">
             <div class="br-menu-item">

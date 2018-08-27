@@ -8,7 +8,7 @@
         <nav class="nav">
         <div class="dropdown">
             <a href="" class="nav-link nav-link-profile" data-toggle="dropdown">
-            <span class="logged-name hidden-md-down">Katherine</span>
+            <span class="logged-name hidden-md-down">{{Auth::guard('admin')->user()->name}}</span>
             <img src="http://via.placeholder.com/64x64" class="wd-32 rounded-circle" alt="">
             <span class="square-10 bg-success"></span>
             </a>

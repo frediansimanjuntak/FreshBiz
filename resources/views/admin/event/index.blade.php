@@ -61,7 +61,7 @@
                     <td>
                         <form action="{{route('admin.event.func.delete')}}" method="POST" enctype="multipart/form-data">
                             {{ csrf_field() }}                                                
-                            <input type="hidden" name="category" value="{{$event->key}}">
+                            <input type="hidden" name="event" value="{{$event->key}}">
                             <a href="{{ route('admin.event.view.update')}}?event={{$event->key}}" class="btn btn-primary">Edit</a>
                             <button type="submit" class="btn btn-danger">Delete</button>
                         </form>    

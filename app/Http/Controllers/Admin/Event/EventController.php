@@ -126,7 +126,7 @@ class EventController extends Controller
     public function delete(Request $request, Events $event)
     {
     	try {
-            $result = CrudHelpers::delete($event,'key', $request['organizer']);
+            $result = CrudHelpers::delete($event,'key', $request['event']);
             return $result['success']==false ? redirect()->back()->withInput()->withErrors(['error' => $result['message']]) : redirect()->route('admin.event.view.list'); 		
     	}
     	catch (\Exception $e) {

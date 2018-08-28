@@ -41,6 +41,8 @@
             <thead>
                 <tr>
                 <th class="wd-15p">Title</th>
+                <th class="wd-10p">Category</th>
+                <th class="wd-10p">Event Organizer</th>
                 <th class="wd-15p">Date</th>
                 <th class="wd-10p">Time</th>
                 <th class="wd-10p">Location</th>
@@ -51,16 +53,18 @@
                 @foreach ($events as $event)                    
                 <tr>
                     <td>{{$event->title}}</td>
-                    <td>{{$event->date_start.'-'.$event->date_end}}</td>
-                    <td>{{$event->time_start.'-'.$event->time_end}}</td>  
+                    <td>{{$event->event_category->name}}</td>
+                    <td>{{$event->event_organizer->company_name}}</td>
+                    <td>{{$event->date_start.' until '.$event->date_end}}</td>
+                    <td>{{$event->time_start.' until '.$event->time_end}}</td>  
                     <td>{{$event->location}}</td>                                 
                     <td>
-                        {{-- <form action="{{route('admin.event_categories.func.delete')}}" method="POST" enctype="multipart/form-data">
+                        <form action="{{route('admin.event.func.delete')}}" method="POST" enctype="multipart/form-data">
                             {{ csrf_field() }}                                                
-                            <input type="hidden" name="category" value="{{$category->key}}">
-                            <a href="{{ route('admin.event_categories.view.update')}}?category={{$category->key}}" class="btn btn-primary">Edit</a>
+                            <input type="hidden" name="category" value="{{$event->key}}">
+                            <a href="{{ route('admin.event.view.update')}}?event={{$event->key}}" class="btn btn-primary">Edit</a>
                             <button type="submit" class="btn btn-danger">Delete</button>
-                        </form>     --}}
+                        </form>    
                     </td>
                 </tr>
                 @endforeach                

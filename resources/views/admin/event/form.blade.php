@@ -46,7 +46,7 @@
                 {!! Form::open(['route' => 'admin.event.func.create', 'method' => 'POST', 'id' => 'event_form', 'enctype' => 'multipart/form-data']) !!}
             @elseif(\Request::route()->getName()=='admin.event.view.update')
                 {!! Form::open(['route' => 'admin.event.func.update', 'method' => 'PUT', 'id' => 'events_form', 'enctype' => 'multipart/form-data']) !!}
-                {{ Form::hidden('eo_key', $eo->key) }}
+                {{ Form::hidden('event_key', $event->key) }}
             @endif  
             <div class="row">
                 <div class="col-xl-6 mg-b-30">
@@ -67,15 +67,17 @@
                             {!! Form::label('eo_key', 'Event Organizer', ['class' => 'col-sm-4 form-control-label']); !!}
                             <div class="col-sm-8 mg-t-10 mg-sm-t-0">
                                 <select class="form-control select2-show-search" name="eo_key" data-placeholder="Choose event organizer">
+                                    @if(\Request::route()->getName()=='admin.event.view.update')  
+                                        <option value={{$event->eo_key}}>{{$event->event_organizer->company_name}}</option>  
+                                    @else                                        
+                                        <option label="Choose event organizer"></option>
+                                    @endif
                                     @foreach ($event_organisers as $eo)    
-                                        @if(\Request::route()->getName()=='admin.event.view.update')  
-                                            <option value={{$event->eo_key}}>{{$event->event_organizer->company_name}}</option>  
-                                            <option label="Choose event organizer"></option>
-                                            @if($eo->key != $event->eo_key)  
+                                        @if(\Request::route()->getName()=='admin.event.view.update') 
+                                            @if($event->eo_key != $eo->key)  
                                                 <option value={{$eo->key}}>{{$eo->company_name}}</option>
                                             @endif
                                         @else
-                                            <option label="Choose event organizer"></option>
                                             <option value={{$eo->key}}>{{$eo->company_name}}</option>
                                         @endif
                                     @endforeach
@@ -91,15 +93,17 @@
                             {!! Form::label('event_category_key', 'Event Category', ['class' => 'col-sm-4 form-control-label']); !!}
                             <div class="col-sm-8 mg-t-10 mg-sm-t-0">
                                 <select class="form-control select2-show-search" name="event_category_key" data-placeholder="Choose event category">
+                                    @if(\Request::route()->getName()=='admin.event.view.update')
+                                        <option value={{$event->event_category_key}}>{{$event->event_category->name}}</option>  
+                                    @else                                        
+                                        <option label="Choose event organizer"></option>
+                                    @endif
                                     @foreach ($event_categories as $event_category)    
                                         @if(\Request::route()->getName()=='admin.event.view.update')  
-                                            <option value={{$event->event_category_key}}>{{$event->event_category->name}}</option>  
-                                            <option label="Choose event category"></option>
                                             @if($event_category->key != $event->event_category_key)  
                                                 <option value={{$event_category->key}}>{{$event_category->name}}</option>
                                             @endif
                                         @else
-                                            <option label="Choose event category"></option>
                                             <option value={{$event_category->key}}>{{$event_category->name}}</option>
                                         @endif
                                     @endforeach
@@ -180,7 +184,7 @@
                         <p class="mg-b-30 tx-gray-600">Upload an image for banner. <span style="color: red">*(800px X 500px)</span></p>  
                         <div class="row mg-t-20">
                             <div class="col-sm-12 mg-t-5 mg-sm-t-0">    
-                                <img id="preview" src="{{asset ('assets/admin/img/img12.jpg')}}" class="img-responsive" height="250" width="400px"/><br/>
+                                <img id="preview" src="{{\Request::route()->getName()=='admin.event.view.create' ? asset ('assets/admin/img/img12.jpg') : asset ('storage/'.$event->image)}}" class="img-responsive" height="250" width="400px"/><br/>
                                 <input type="file" id="image" name="attachment" style="display: none;"/>
                                 <br>
                                 @if ($errors->has('image'))

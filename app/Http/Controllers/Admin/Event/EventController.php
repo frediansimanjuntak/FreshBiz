@@ -72,11 +72,8 @@ class EventController extends Controller
             } 
             
             $attachment = '';
-            // dd($request->file('attachment'));
             if ($request->file('attachment')) {
                 $image = AttachmentHelpers::store('attachment', $request->file('attachment'));
-                // dd($logo);
-                // var_dump($logo); die();
                 $attachment = $image;
             }
             $data['image'] = $attachment;
@@ -110,7 +107,14 @@ class EventController extends Controller
                             ->withInput();
             } 
             $key = $data['event_key'];
-            unset($data['_method'], $data['_token'], $data['event_key']);
+            $event_data = Events::where('key', $key)->first();
+            $attachment = $event_data->image;
+            if ($request->file('attachment')) {
+                $image = AttachmentHelpers::store('attachment', $request->file('attachment'));
+                $attachment = $image;
+            }
+            $data['image'] = $attachment;
+            unset($data['_method'], $data['_token'], $data['event_key'], $data['attachment']);
             $result = CrudHelpers::update($event,'key', $key, $data);
             return $result['success']==false ? redirect()->back()->withInput()->withErrors(['error' => $result['message']]) : redirect()->route('admin.event.view.list'); 
     	}

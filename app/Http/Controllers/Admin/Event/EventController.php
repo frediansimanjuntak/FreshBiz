@@ -36,6 +36,13 @@ class EventController extends Controller
         return view('admin.event.index', ['events'=>$events]);
     }
 
+    public function view_detail(Request $request)
+    {        
+        $event = Events::where('key', $request['event'])->first();        
+        $event['tags'] = explode(",", $event['tags']);
+        return view('admin.event.detail', ['event'=>$event]);
+    }
+
     public function view_create(Request $request)
     {        
         $event_categories = EventCategories::get();

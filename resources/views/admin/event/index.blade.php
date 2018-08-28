@@ -52,7 +52,7 @@
             <tbody>
                 @foreach ($events as $event)                    
                 <tr>
-                    <td>{{$event->title}}</td>
+                    <td><a href="{{route ('admin.event.view.detail')}}?event={{$event->key}}"> {{$event->title}}</a></td>
                     <td>{{$event->event_category->name}}</td>
                     <td>{{$event->event_organizer->company_name}}</td>
                     <td>{{$event->date_start.' until '.$event->date_end}}</td>

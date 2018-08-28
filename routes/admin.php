@@ -33,6 +33,7 @@ Route::group(['prefix' => 'admin', 'middleware' => 'admin', 'namespace' => 'Admi
         Route::group(['prefix' => 'event', 'namespace' => 'Event'], function () { 
             Route::name('event.view.')->group(function () {                
                 Route::get('/list', 'EventController@index')->name('list');
+                Route::get('/detail', 'EventController@view_detail')->name('detail');
                 Route::get('/create', 'EventController@view_create')->name('create');
                 Route::get('/update', 'EventController@view_update')->name('update');
             });  

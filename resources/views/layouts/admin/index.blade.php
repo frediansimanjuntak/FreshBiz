@@ -37,7 +37,7 @@
         <script src="{{ asset ('assets/admin/lib/bootstrap/bootstrap.js') }}"></script>
         <script src="{{ asset ('assets/admin/lib/perfect-scrollbar/js/perfect-scrollbar.jquery.js') }}"></script>
         
-<script src="{{ asset ('assets/admin/lib/summernote/summernote-bs4.min.js') }}"></script>
+        <script src="{{ asset ('assets/admin/lib/summernote/summernote-bs4.min.js') }}"></script>
         <script src="{{ asset ('assets/admin/lib/moment/moment.js') }}"></script>
         <script src="{{ asset ('assets/admin/lib/jquery-ui/jquery-ui.js') }}"></script>
         <script src="{{ asset ('assets/admin/lib/jquery-switchbutton/jquery.switchButton.js') }}"></script>

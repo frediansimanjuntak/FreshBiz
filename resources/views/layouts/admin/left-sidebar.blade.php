@@ -9,7 +9,7 @@
                 <span class="menu-item-label">Dashboard</span>
             </div><!-- menu-item -->
         </a><!-- br-menu-link -->    
-        <a href="#" class="br-menu-link {{ GlobalHelpers::set_active(['admin.event.view.list', 'admin.event.view.create']) }}">
+        <a href="#" class="br-menu-link {{ GlobalHelpers::set_active(['admin.event.view.list', 'admin.event.view.create', 'admin.event.view.detail']) }}">
             <div class="br-menu-item">
                 <i class="menu-item-icon icon ion-coffee tx-24"></i>
                 <span class="menu-item-label">Events</span>

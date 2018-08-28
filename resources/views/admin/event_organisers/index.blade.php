@@ -46,7 +46,6 @@
                 <th class="wd-10p">Phone</th>
                 <th class="wd-10p">Email</th>
                 <th class="wd-10p">Website</th>
-                <th class="wd-10p">Description</th>
                 <th class="wd-10p"></th>
                 </tr>
             </thead>
@@ -58,8 +57,7 @@
                     <td>{{$eo->address}}</td>  
                     <td>{{$eo->phone}}</td> 
                     <td>{{$eo->email}}</td> 
-                    <td>{{$eo->website}}</td>   
-                    <td>{{$eo->description}}</td>                                 
+                    <td>{{$eo->website}}</td>                                  
                     <td>
                         <form action="{{route('admin.event_organisers.func.delete')}}" method="POST" enctype="multipart/form-data">
                             {{ csrf_field() }}                                                

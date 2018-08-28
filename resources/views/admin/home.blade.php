@@ -2,55 +2,125 @@
 @section('title', 'Dashboard')
 @section('pagespecificstyles') 
 <!-- style -->
-
-<link href="{{ asset ('assets/admin/lib/rickshaw/rickshaw.min.css') }}" rel="stylesheet">
-<link href="{{ asset ('assets/admin/lib/chartist/chartist.css') }}" rel="stylesheet">
+<!-- morris CSS -->
+<link href="{{ asset ('assets/plugins/morrisjs/morris.css') }}" rel="stylesheet">
 <!-- /style -->
 @endsection
 
 @section('content')
-
-@include('layouts.admin.footer')
+<!-- ============================================================== -->
+<!-- Bread crumb and right sidebar toggle -->
+<!-- ============================================================== -->
+<div class="row page-titles">
+    <div class="col-md-5 align-self-center">
+        <h3 class="text-themecolor">Dashboard</h3>
+    </div>
+    <div class="col-md-7 align-self-center">
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a href="javascript:void(0)">Home</a></li>
+            <li class="breadcrumb-item active">Dashboard</li>
+        </ol>
+    </div>
+</div>
+<!-- ============================================================== -->
+<!-- End Bread crumb and right sidebar toggle -->
+<!-- ============================================================== -->
+<!-- ============================================================== -->
+<!-- Container fluid  -->
+<!-- ============================================================== -->
+<div class="container-fluid">
+    <!-- ============================================================== -->
+    <!-- Start Page Content -->
+    <!-- ============================================================== -->
+    <!-- Row -->
+    <div class="card-group">
+        <div class="card">
+            <div class="card-body">
+                <div class="row">
+                    <div class="col-12">
+                        <h2 class="m-b-0"><i class="mdi mdi-briefcase-check text-info"></i></h2>
+                        <h3 class="">2456</h3>
+                        <h6 class="card-subtitle">New Projects</h6></div>
+                    <div class="col-12">
+                        <div class="progress">
+                            <div class="progress-bar bg-info" role="progressbar" style="width: 85%; height: 6px;" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Column -->
+        <!-- Column -->
+        <div class="card">
+            <div class="card-body">
+                <div class="row">
+                    <div class="col-12">
+                        <h2 class="m-b-0"><i class="mdi mdi-alert-circle text-success"></i></h2>
+                        <h3 class="">546</h3>
+                        <h6 class="card-subtitle">Pending Project</h6></div>
+                    <div class="col-12">
+                        <div class="progress">
+                            <div class="progress-bar bg-success" role="progressbar" style="width: 40%; height: 6px;" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Column -->
+        <!-- Column -->
+        <div class="card">
+            <div class="card-body">
+                <div class="row">
+                    <div class="col-12">
+                        <h2 class="m-b-0"><i class="mdi mdi-wallet text-purple"></i></h2>
+                        <h3 class="">$24561</h3>
+                        <h6 class="card-subtitle">Total Cost</h6></div>
+                    <div class="col-12">
+                        <div class="progress">
+                            <div class="progress-bar bg-primary" role="progressbar" style="width: 56%; height: 6px;" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Column -->
+        <!-- Column -->
+        <div class="card">
+            <div class="card-body">
+                <div class="row">
+                    <div class="col-12">
+                        <h2 class="m-b-0"><i class="mdi mdi-buffer text-warning"></i></h2>
+                        <h3 class="">$30010</h3>
+                        <h6 class="card-subtitle">Total Earnings</h6></div>
+                    <div class="col-12">
+                        <div class="progress">
+                            <div class="progress-bar bg-warning" role="progressbar" style="width: 26%; height: 6px;" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- ============================================================== -->
+    <!-- End PAge Content -->
+    <!-- ============================================================== -->
+</div>
+<!-- ============================================================== -->
+<!-- End Container fluid  -->
+<!-- ============================================================== -->
 @endsection
 
 @section('pagespecificscripts')
 <!-- script --> 
-<script src="{{ asset ('assets/admin/lib/chartist/chartist.js') }}"></script>
-<script src="{{ asset ('assets/admin/lib/jquery.sparkline.bower/jquery.sparkline.min.js') }}"></script>
-<script src="{{ asset ('assets/admin/lib/d3/d3.js') }}"></script>
-<script src="{{ asset ('assets/admin/lib/rickshaw/rickshaw.min.js') }}"></script>
-
-
-<script src="{{ asset ('assets/admin/js/bracket.js') }}"></script>
-<script src="{{ asset ('assets/admin/js/ResizeSensor.js') }}"></script>
-<script src="{{ asset ('assets/admin/js/dashboard.js') }}"></script>
-<script>
-$(function(){
-    'use strict'
-
-    // FOR DEMO ONLY
-    // menu collapsed by default during first page load or refresh with screen
-    // having a size between 992px and 1299px. This is intended on this page only
-    // for better viewing of widgets demo.
-    $(window).resize(function(){
-    minimizeMenu();
-    });
-
-    minimizeMenu();
-
-    function minimizeMenu() {
-        if(window.matchMedia('(min-width: 992px)').matches && window.matchMedia('(max-width: 1299px)').matches) {
-            // show only the icons and hide left menu label by default
-            $('.menu-item-label,.menu-item-arrow').addClass('op-lg-0-force d-lg-none');
-            $('body').addClass('collapsed-menu');
-            $('.show-sub + .br-menu-sub').slideUp();
-        } else if(window.matchMedia('(min-width: 1300px)').matches && !$('body').hasClass('collapsed-menu')) {
-            $('.menu-item-label,.menu-item-arrow').removeClass('op-lg-0-force d-lg-none');
-            $('body').removeClass('collapsed-menu');
-            $('.show-sub + .br-menu-sub').slideDown();
-        }
-    }
-});
-</script>
-<!-- /script -->
+<!-- ============================================================== -->
+<!-- This page plugins -->
+<!-- ============================================================== -->
+<!--sparkline JavaScript -->
+<script src="{{ asset ('assets/plugins/sparkline/jquery.sparkline.min.js') }}"></script>
+<!--morris JavaScript -->
+<script src="{{ asset ('assets/plugins/raphael/raphael-min.js') }}"></script>
+<script src="{{ asset ('assets/plugins/morrisjs/morris.min.js') }}"></script>
+<!-- Chart JS -->
+<script src="{{ asset ('assets/admin/js/dashboard1.js') }}"></script>
 @endsection

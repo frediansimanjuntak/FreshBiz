@@ -46,7 +46,7 @@
                 <th class="wd-10p">Phone</th>
                 <th class="wd-10p">Email</th>
                 <th class="wd-10p">Website</th>
-                <th class="wd-10p"></th>
+                <th class="wd-10p">Action</th>
                 </tr>
             </thead>
             <tbody>

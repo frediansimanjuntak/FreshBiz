@@ -46,7 +46,7 @@
                 <th class="wd-15p">Date</th>
                 <th class="wd-10p">Time</th>
                 <th class="wd-10p">Location</th>
-                <th class="wd-10p"></th>
+                <th class="wd-10p">Action</th>
                 </tr>
             </thead>
             <tbody>

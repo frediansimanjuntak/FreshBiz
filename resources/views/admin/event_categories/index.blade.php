@@ -43,7 +43,7 @@
                 <th class="wd-15p">Name</th>
                 <th class="wd-15p">Description</th>
                 <th class="wd-10p">Disabled</th>
-                <th class="wd-10p"></th>
+                <th class="wd-10p">Action</th>
                 </tr>
             </thead>
             <tbody>

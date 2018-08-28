@@ -45,7 +45,7 @@ class EventOrganisersController extends Controller
     {        
         $organizer = EventOrganiser::where('key', $request['organizer'])->first();
         $users = User::get();
-        return view('admin.event_organisers.form', ['organizer'=>$organizer, 'users'=>$users]);
+        return view('admin.event_organisers.form', ['eo'=>$organizer, 'users'=>$users]);
     }
 
     public function create(Request $request, EventOrganiser $event_organisers)

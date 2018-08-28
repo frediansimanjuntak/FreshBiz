@@ -61,12 +61,12 @@
                     <td>{{$eo->website}}</td>   
                     <td>{{$eo->description}}</td>                                 
                     <td>
-                        {{-- <form action="{{route('admin.event_categories.func.delete')}}" method="POST" enctype="multipart/form-data">
+                        <form action="{{route('admin.event_organisers.func.delete')}}" method="POST" enctype="multipart/form-data">
                             {{ csrf_field() }}                                                
-                            <input type="hidden" name="category" value="{{$category->key}}">
-                            <a href="{{ route('admin.event_categories.view.update')}}?category={{$category->key}}" class="btn btn-primary">Edit</a>
+                            <input type="hidden" name="organizer" value="{{$eo->key}}">
+                            <a href="{{ route('admin.event_organisers.view.update')}}?organizer={{$eo->key}}" class="btn btn-primary">Edit</a>
                             <button type="submit" class="btn btn-danger">Delete</button>
-                        </form>     --}}
+                        </form>    
                     </td>
                 </tr>
                 @endforeach                

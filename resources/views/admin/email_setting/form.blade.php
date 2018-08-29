@@ -9,6 +9,113 @@
 @endsection
 
 @section('content')
+<!-- ============================================================== -->
+<!-- Bread crumb and right sidebar toggle -->
+<!-- ============================================================== -->
+<div class="row page-titles">
+    <div class="col-md-5 align-self-center">
+        <h3 class="text-themecolor">{{(\Request::route()->getName()=='admin.event_categories.view.create')?'Create ':'Edit '}} Event Categories</h3>
+    </div>
+    <div class="col-md-7 align-self-center">
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a href="javascript:void(0)">Home</a></li>
+            <li class="breadcrumb-item">Setting</li>
+            <li class="breadcrumb-item active">Email</li>
+        </ol>
+    </div>
+</div>
+<!-- ============================================================== -->
+<!-- End Bread crumb and right sidebar toggle -->
+<!-- ============================================================== -->
+<!-- ============================================================== -->
+<!-- Container fluid  -->
+<!-- ============================================================== -->
+<div class="container-fluid">
+    <!-- ============================================================== -->
+    <!-- Start Page Content -->
+    <!-- ============================================================== -->
+    @if($errors->first('error'))
+    <div class="alert alert-danger"> <i class="ti-user"></i><strong>Error!</strong> {{$errors->first('error')}}
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close"> <span aria-hidden="true">&times;</span> </button>
+    </div>
+    @endif
+    <!-- Row -->
+    <div class="row">
+            <div class="col-lg-6">
+                <div class="card card-outline-info">
+                    <div class="card-header">
+                        <h4 class="m-b-0 text-white">Add New form</h4>
+                    </div>
+                    <div class="card-body">
+                        {!! Form::open(['route' => 'admin.setting.email.func.update', 'method' => 'PUT', 'id' => 'event_categories_form', 'enctype' => 'multipart/form-data']) !!}
+                            <div class="form-body">
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <div class="form-group">
+                                            {!! Form::label('from_name', 'From Name', ['class' => 'control-label']); !!}
+                                            {!! Form::text('from_name', $email_setting ? $email_setting->from_name : null,['class' => 'form-control', 'placeholder' => 'Enter email from name', 'autofocus', 'required']); !!}
+                                            @if ($errors->has('from_name'))
+                                                <span class="help-block">
+                                                    <strong>{{ $errors->first('from_name') }}</strong>
+                                                </span> 
+                                            @endif
+                                        </div>
+                                    </div>
+                                    <!--/span-->
+                                </div>
+                                <!--/row-->
+                                
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <div class="form-group">
+                                            {!! Form::label('from_email', 'From Email', ['class' => 'control-label']); !!}
+                                            {!! Form::text('from_email', $email_setting ? $email_setting->from_email : null ,['class' => 'form-control', 'placeholder' => 'Enter email address', 'autofocus', 'required']); !!}
+                                            @if ($errors->has('from_email'))
+                                                <span class="help-block">
+                                                    <strong>{{ $errors->first('from_email') }}</strong>
+                                                </span> 
+                                            @endif
+                                        </div>
+                                    </div>
+                                    <!--/span-->
+                                </div>
+                                <!--/row-->  
+                                
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <div class="form-group">
+                                            {!! Form::label('feedback_email_to', 'Feedback Email to', ['class' => 'control-label']); !!}
+                                            {!! Form::text('feedback_email_to', $email_setting ? $email_setting->feedback_email_to : null ,['class' => 'form-control', 'placeholder' => 'Enter feedback email to', 'autofocus', 'required']); !!}
+                                            @if ($errors->has('feedback_email_to'))
+                                                <span class="help-block">
+                                                    <strong>{{ $errors->first('feedback_email_to') }}</strong>
+                                                </span> 
+                                            @endif
+                                        </div>
+                                    </div>
+                                    <!--/span-->
+                                </div>
+                                <!--/row-->                                   
+                            </div>
+                            <div class="form-actions">
+                                <button type="submit" class="btn btn-success"> <i class="fa fa-check"></i> Save</button>
+                                <button type="button" class="btn btn-inverse">Cancel</button>
+                            </div>
+                        {!! Form::close() !!}
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Row -->
+    </div>
+    <!-- ============================================================== -->
+    <!-- End PAge Content -->
+    <!-- ============================================================== -->                
+</div>
+<!-- ============================================================== -->
+<!-- End Container fluid  -->
+
+
 <!-- ########## START: MAIN PANEL ########## -->
 <div class="br-mainpanel">
     <div class="br-pageheader pd-y-15 pd-l-20">

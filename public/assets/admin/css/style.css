@@ -1618,6 +1618,12 @@ form label {
 .form-group {
   margin-bottom: 25px; }
 
+.form-group iframe {
+    width: 100% !important; }
+/* 
+.form-group .select2 {
+  width: 100% !important; } */
+
 .form-horizontal label {
   margin-bottom: 0px; }
 

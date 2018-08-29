@@ -121,7 +121,7 @@ class EventController extends Controller
                 $attachment = $image;
             }
             $data['image'] = $attachment;
-            unset($data['_method'], $data['_token'], $data['event_key'], $data['attachment']);
+            unset($data['_method'], $data['_token'], $data['event_key'], $data['attachment'], $data['_wysihtml5_mode']);
             $result = CrudHelpers::update($event,'key', $key, $data);
             return $result['success']==false ? redirect()->back()->withInput()->withErrors(['error' => $result['message']]) : redirect()->route('admin.event.view.list'); 
     	}

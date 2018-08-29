@@ -45,7 +45,7 @@
                         <li><a href="{{route('admin.event_categories.view.create')}}">Create</a></li>
                     </ul>
                 </li>
-                <li class="nav-small-cap">EXTRA COMPONENTS</li>
+                {{-- <li class="nav-small-cap">EXTRA COMPONENTS</li>
                 <li> <a class="has-arrow waves-effect waves-dark" href="#" aria-expanded="false"><i class="mdi mdi-book-multiple"></i><span class="hide-menu">Page Layout</span></a>
                     <ul aria-expanded="false" class="collapse">
                         <li><a href="layout-single-column.html">1 Column</a></li>
@@ -138,7 +138,7 @@
                         </li>
                         <li><a href="#">item 1.4</a></li>
                     </ul>
-                </li>
+                </li> --}}
             </ul>
         </nav>
         <!-- End Sidebar navigation -->

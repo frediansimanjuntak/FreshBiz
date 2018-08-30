@@ -38,13 +38,12 @@
         <div class="col-lg-4 col-xlg-3 col-md-5">
             <div class="card">
                 <div class="card-body">
-                    <center class="m-t-30"> <img src="../assets/images/users/5.jpg" class="img-circle" width="150" />
+                    <center class="m-t-30"> 
+                        @if($event->event_organizer->logo)
+                        <img src="{{asset ('storage/'.$event->event_organizer->logo)}}" class="img-circle" width="150" />
+                        @endif
                         <h4 class="card-title m-t-10">{{$event->event_organizer->company_name}}</h4>
                         <h6 class="card-subtitle">{{$event->event_organizer->user->name}}</h6>
-                        {{-- <div class="row text-center justify-content-md-center">
-                            <div class="col-4"><a href="javascript:void(0)" class="link"><i class="icon-people"></i> <font class="font-medium">254</font></a></div>
-                            <div class="col-4"><a href="javascript:void(0)" class="link"><i class="icon-picture"></i> <font class="font-medium">54</font></a></div>
-                        </div> --}}
                     </center>
                 </div>
                 <div>

@@ -10,6 +10,7 @@ use App\Models\EventOrganiser;
 use App\Models\User;
 use GlobalHelpers;
 use CrudHelpers;
+use AttachmentHelpers;
 
 class EventOrganisersController extends Controller
 {
@@ -67,6 +68,14 @@ class EventOrganisersController extends Controller
                             ->withErrors($validator)
                             ->withInput();
             } 
+            
+            $attachment = '';
+            if ($request->file('attachment')) {
+                $image = AttachmentHelpers::store('attachment', $request->file('attachment'));
+                $attachment = $image;
+            }
+            $data['logo'] = $attachment;
+
             $validation_user = EventOrganiser::where('user_key', $data['user_key'])->first();
             if ($validation_user) {
                 return redirect()->back()->withInput()->withErrors(['error' => "User was available"]);
@@ -102,7 +111,14 @@ class EventOrganisersController extends Controller
                             ->withInput();
             } 
             $key = $data['eo_key'];
-            unset($data['_method'], $data['_token'], $data['eo_key'], $data['_wysihtml5_mode']);
+            $event_organizer_data = EventOrganiser::where('key', $key)->first();
+            $attachment = $event_organizer_data->image;
+            if ($request->file('attachment')) {
+                $image = AttachmentHelpers::store('attachment', $request->file('attachment'));
+                $attachment = $image;
+            }
+            $data['logo'] = $attachment;
+            unset($data['_method'], $data['_token'], $data['eo_key'], $data['_wysihtml5_mode'], $data['attachment']);
             $result = CrudHelpers::update($event_organisers,'key', $key, $data);
             return $result['success']==false ? redirect()->back()->withInput()->withErrors(['error' => $result['message']]) : redirect()->route('admin.event_organisers.view.list'); 
     	}

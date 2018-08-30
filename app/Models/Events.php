@@ -10,7 +10,7 @@ class Events extends Model
     public $incrementing = false;
     const UPDATED_AT = 'updated_at';
     protected $fillable = [
-        'key', 'title', 'description', 'date_start', 'date_end', 'time_start', 'time_end', 'location', 'tags', 'image', 'private', 'disabled', 'eo_key', 'event_category_key'
+        'key', 'title', 'description', 'date_start', 'date_end', 'time_start', 'time_end', 'location', 'tags', 'image', 'private', 'disabled', 'eo_key', 'event_category_key', 'logo'
     ];
     protected $hidden = [
 

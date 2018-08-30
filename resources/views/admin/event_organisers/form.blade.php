@@ -5,6 +5,8 @@
 <link href="{{ asset ('assets/plugins/select2/dist/css/select2.min.css') }}" rel="stylesheet" type="text/css" />
 <link rel="stylesheet" href="{{ asset ('assets/plugins/html5-editor/bootstrap-wysihtml5.css') }}" />
 <!-- /style -->
+
+<link rel="stylesheet" href="{{ asset ('assets/plugins/dropify/dist/css/dropify.min.css') }}">
 @endsection
 
 @section('content')
@@ -53,11 +55,57 @@
                             <div class="row">
                                 <div class="col-md-12">
                                     <div class="form-group">
+                                        {!! Form::label('attachment', 'Logo', ['class' => 'control-label']); !!}
+                                        <input type="file" id="input-file-now" name="attachment" class="dropify" data-default-file="{{\Request::route()->getName()=='admin.event_organisers.view.create' ? null : asset ('storage/'.$eo->logo)}}"/>
+                                        @if ($errors->has('attachment'))
+                                            <span class="text-danger">
+                                                <strong>{{ $errors->first('attachment') }}</strong>
+                                            </span> 
+                                        @endif
+                                    </div>
+                                </div>
+                                <!--/span-->
+                            </div>
+                            <!--/row-->  
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <div class="form-group">
                                         {!! Form::label('company_name', 'Company Name', ['class' => 'control-label']); !!}
                                         {!! Form::text('company_name', \Request::route()->getName()=='admin.event_organisers.view.create' ? null : $eo->company_name ,['class' => 'form-control', 'placeholder' => 'Enter name', 'autofocus', 'required']); !!}
                                         @if ($errors->has('company_name'))
                                             <span class="text-danger">
                                                 <strong>{{ $errors->first('company_name') }}</strong>
+                                            </span> 
+                                        @endif
+                                    </div>
+                                </div>
+                                <!--/span-->
+                            </div>
+                            <!--/row-->                                                            
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <div class="form-group">
+                                        {!! Form::label('user_key', 'User', ['class' => 'control-label']); !!}
+                                        <select class="select2 form-control custom-select" name="user_key" data-placeholder="Choose user" style="width: 100%; height:36px;">
+                                            @if(\Request::route()->getName()=='admin.event_organisers.view.update')
+                                                <option value={{$eo->user_key}}>{{$eo->user->name}}</option>  
+                                                <option label="Choose one"></option>
+                                            @else
+                                                <option label="Choose one"></option>
+                                            @endif
+                                            @foreach ($users as $user)    
+                                                @if(\Request::route()->getName()=='admin.event_organisers.view.update')  
+                                                    @if($user->key != $eo->user_key)  
+                                                        <option value={{$user->key}}>{{$user->name}}</option>
+                                                    @endif
+                                                @else
+                                                    <option value={{$user->key}}>{{$user->name}}</option>
+                                                @endif
+                                            @endforeach
+                                        </select>
+                                        @if ($errors->has('user_key'))
+                                            <span class="text-danger">
+                                                <strong>{{ $errors->first('user_key') }}</strong>
                                             </span> 
                                         @endif
                                     </div>
@@ -124,38 +172,7 @@
                                 </div>
                                 <!--/span-->
                             </div>
-                            <!--/row-->                                                           
-                            <div class="row">
-                                <div class="col-md-12">
-                                    <div class="form-group">
-                                        {!! Form::label('user_key', 'User', ['class' => 'control-label']); !!}
-                                        <select class="select2 form-control custom-select" name="user_key" data-placeholder="Choose user" style="width: 100%; height:36px;">
-                                            @if(\Request::route()->getName()=='admin.event_organisers.view.update')
-                                                <option value={{$eo->user_key}}>{{$eo->user->name}}</option>  
-                                                <option label="Choose one"></option>
-                                            @else
-                                                <option label="Choose one"></option>
-                                            @endif
-                                            @foreach ($users as $user)    
-                                                @if(\Request::route()->getName()=='admin.event_organisers.view.update')  
-                                                    @if($user->key != $eo->user_key)  
-                                                        <option value={{$user->key}}>{{$user->name}}</option>
-                                                    @endif
-                                                @else
-                                                    <option value={{$user->key}}>{{$user->name}}</option>
-                                                @endif
-                                            @endforeach
-                                        </select>
-                                        @if ($errors->has('user_key'))
-                                            <span class="text-danger">
-                                                <strong>{{ $errors->first('user_key') }}</strong>
-                                            </span> 
-                                        @endif
-                                    </div>
-                                </div>
-                                <!--/span-->
-                            </div>
-                            <!--/row--> 
+                            <!--/row-->                            
                             <div class="row">
                                 <div class="col-md-12">
                                     <div class="form-group">
@@ -194,12 +211,15 @@
 
 @section('pagespecificscripts')
 <script src="{{ asset ('assets/plugins/select2/dist/js/select2.full.min.js') }}" type="text/javascript"></script>
+
+<script src="{{ asset ('assets/plugins/dropify/dist/js/dropify.min.js') }}"></script>
 <script src="{{ asset ('assets/plugins/html5-editor/wysihtml5-0.3.0.js') }}"></script>
 <script src="{{ asset ('assets/plugins/html5-editor/bootstrap-wysihtml5.js') }}"></script>
 <script type="text/javascript">
     $(document).ready(function() {       
         $(".select2").select2();  
-        $('.textarea_editor').wysihtml5();      
+        $('.textarea_editor').wysihtml5();   
+        $('.dropify').dropify();      
     });
 </script>
 @endsection

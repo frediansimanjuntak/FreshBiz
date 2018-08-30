@@ -220,11 +220,11 @@
                             <div class="row">
                                 <div class="col-md-12">
                                     <div class="form-group">
-                                        {!! Form::label('image', 'Image', ['class' => 'control-label']); !!}
+                                        {!! Form::label('attachment', 'Banner Image', ['class' => 'control-label']); !!}
                                         <input type="file" id="input-file-now" name="attachment" class="dropify" data-default-file="{{\Request::route()->getName()=='admin.event.view.create' ? null : asset ('storage/'.$event->image)}}"/>
-                                        @if ($errors->has('description'))
+                                        @if ($errors->has('attachment'))
                                             <span class="text-danger">
-                                                <strong>{{ $errors->first('description') }}</strong>
+                                                <strong>{{ $errors->first('attachment') }}</strong>
                                             </span> 
                                         @endif
                                     </div>

@@ -7,6 +7,154 @@
 @endsection
 
 @section('content')
+<!-- ============================================================== -->
+<!-- Bread crumb and right sidebar toggle -->
+<!-- ============================================================== -->
+<div class="row page-titles">
+    <div class="col-md-5 align-self-center">
+        <h3 class="text-themecolor">Event Detail</h3>
+    </div>
+    <div class="col-md-7 align-self-center">
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a href="javascript:void(0)">Home</a></li>
+            <li class="breadcrumb-item">Event</li>
+            <li class="breadcrumb-item active">Detail</li>
+        </ol>
+    </div>
+</div>
+<!-- ============================================================== -->
+<!-- End Bread crumb and right sidebar toggle -->
+<!-- ============================================================== -->
+<!-- ============================================================== -->
+<!-- Container fluid  -->
+<!-- ============================================================== -->
+<div class="container-fluid">
+    <!-- ============================================================== -->
+    <!-- Start Page Content -->
+    <!-- ============================================================== -->
+    <!-- Row -->
+    <div class="row">
+        <!-- Column -->
+        <div class="col-lg-4 col-xlg-3 col-md-5">
+            <div class="card">
+                <div class="card-body">
+                    <center class="m-t-30"> <img src="../assets/images/users/5.jpg" class="img-circle" width="150" />
+                        <h4 class="card-title m-t-10">{{$event->event_organizer->company_name}}</h4>
+                        <h6 class="card-subtitle">{{$event->event_organizer->user->name}}</h6>
+                        {{-- <div class="row text-center justify-content-md-center">
+                            <div class="col-4"><a href="javascript:void(0)" class="link"><i class="icon-people"></i> <font class="font-medium">254</font></a></div>
+                            <div class="col-4"><a href="javascript:void(0)" class="link"><i class="icon-picture"></i> <font class="font-medium">54</font></a></div>
+                        </div> --}}
+                    </center>
+                </div>
+                <div>
+                    <hr> </div>
+                <div class="card-body"> 
+                    <small class="text-muted">Email address </small>
+                        <h6>{{$event->event_organizer->email}}</h6> 
+                    <small class="text-muted p-t-30 db">Phone</small>
+                        <h6>{{$event->event_organizer->phone}}</h6> 
+                    <small class="text-muted p-t-30 db">Address</small>
+                        <h6>{{$event->event_organizer->address}}</h6>
+                    <small class="text-muted p-t-30 db">Social Profile</small>
+                    <br/>
+                    <button class="btn btn-circle btn-secondary"><i class="fa fa-facebook"></i></button>
+                    <button class="btn btn-circle btn-secondary"><i class="fa fa-twitter"></i></button>
+                    <button class="btn btn-circle btn-secondary"><i class="fa fa-youtube"></i></button>
+                </div>
+            </div>
+        </div>
+        <!-- Column -->
+        <!-- Column -->
+        <div class="col-lg-8 col-xlg-9 col-md-7">
+            <div class="card">
+                <!-- Nav tabs -->
+                <ul class="nav nav-tabs profile-tab" role="tablist">
+                    <li class="nav-item"> <a class="nav-link active" data-toggle="tab" href="#home" role="tab">Detail</a> </li>
+                    <li class="nav-item"> <a class="nav-link" data-toggle="tab" href="#profile" role="tab">Attendance</a> </li>
+                    <li class="nav-item"> <a class="nav-link" href="{{ route('admin.event.view.update')}}?event={{$event->key}}" role="tab">Edit</a> </li>
+                </ul>
+                <!-- Tab panes -->
+                <div class="tab-content">
+                    <div class="tab-pane active" id="home" role="tabpanel">
+                        <div class="card-body">
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <h3>{{$event->title}}</h3>
+                                </div> 
+                            </div>                               
+                            <hr>
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <img src="{{asset ('storage/'.$event->image)}}" class="img-responsive radius" />
+                                </div> 
+                            </div>                               
+                            <hr>
+                            <div class="row">
+                                <div class="col-md-3 col-xs-6 b-r"> <strong>Location</strong>
+                                    <br>
+                                    <p class="text-muted">{{$event->location}}</p>
+                                </div>
+                                <div class="col-md-3 col-xs-6 b-r"> <strong>Category</strong>
+                                    <br>
+                                    <p class="text-muted">{{$event->event_category->name}}</p>
+                                </div>
+                                <div class="col-md-3 col-xs-6 b-r"> <strong>Date</strong>
+                                    <br>
+                                    <p class="text-muted">{{$event->date_start.' until '.$event->date_end}}</p>
+                                </div>
+                                <div class="col-md-3 col-xs-6 b-r"> <strong>Time</strong>
+                                    <br>
+                                    <p class="text-muted">{{$event->time_start.' until '.$event->time_end}}</p>
+                                </div>
+                            </div>                              
+                            <hr>
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <p class="m-t-10">{!!$event->description!!}</p>
+                                </div> 
+                            </div>                             
+                        </div>
+                    </div>
+                    <!--second tab-->
+                    <div class="tab-pane" id="profile" role="tabpanel">
+                        <div class="row">                            
+                            <div class="col-12"> 
+                                <div class="card-body">
+                                    <div class="table-responsive m-t-20">
+                                        <table id="myTable" class="table table-bordered table-striped">
+                                            <thead>
+                                                <tr>
+                                                    <th>Name</th>
+                                                    <th>Email</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>                  
+                                                <tr>
+                                                    <td>fred_dummy</td>
+                                                    <td>fred_dummy@gmail.com</td> 
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>   
+                            </div>                        
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Column -->
+    </div>
+    <!-- Row -->
+    <!-- ============================================================== -->
+    <!-- End PAge Content -->
+    <!-- ============================================================== -->    
+</div>
+<!-- ============================================================== -->
+<!-- End Container fluid  -->
+<!-- ============================================================== -->
+{{-- 
 <!-- ########## START: MAIN PANEL ########## -->
 <div class="br-mainpanel br-profile-page">
 
@@ -30,8 +178,6 @@
     <ul class="nav nav-outline active-info align-items-center flex-row" role="tablist">
         <li class="nav-item"><a class="nav-link active" data-toggle="tab" href="#posts" role="tab">Detail</a></li>
         <li class="nav-item"><a class="nav-link" data-toggle="tab" href="#photos" role="tab">Gallery</a></li>
-        {{-- <li class="nav-item"><a class="nav-link" data-toggle="tab" href="#" role="tab">Favorites</a></li>
-        <li class="nav-item hidden-xs-down"><a class="nav-link" data-toggle="tab" href="#" role="tab">Settings</a></li> --}}
     </ul>
     </div>
 
@@ -174,10 +320,52 @@
     </div><!-- br-pagebody -->
 
 </div><!-- br-mainpanel -->
-<!-- ########## END: MAIN PANEL ########## -->
+<!-- ########## END: MAIN PANEL ########## --> --}}
 
 @endsection
 
 @section('pagespecificscripts')
-<script src="{{ asset ('assets/admin/js/bracket.js') }}"></script>
+<!-- This is data table -->
+<script src="{{ asset ('assets/plugins/datatables/jquery.dataTables.min.js') }}"></script>
+<!-- start - This is for export functionality only -->
+<script src="https://cdn.datatables.net/buttons/1.2.2/js/dataTables.buttons.min.js"></script>
+<script src="https://cdn.datatables.net/buttons/1.2.2/js/buttons.flash.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/2.5.0/jszip.min.js"></script>
+<script src="https://cdn.rawgit.com/bpampuch/pdfmake/0.1.18/build/pdfmake.min.js"></script>
+<script src="https://cdn.rawgit.com/bpampuch/pdfmake/0.1.18/build/vfs_fonts.js"></script>
+<script src="https://cdn.datatables.net/buttons/1.2.2/js/buttons.html5.min.js"></script>
+<script src="https://cdn.datatables.net/buttons/1.2.2/js/buttons.print.min.js"></script>
+<!-- end - This is for export functionality only -->
+<script>
+$(document).ready(function() {
+    $('#myTable').DataTable();
+    $(document).ready(function() {
+        var table = $('#example').DataTable({
+            "columnDefs": [{
+                "visible": false,
+                "targets": 2
+            }],
+            "order": [
+                [2, 'asc']
+            ],
+            "displayLength": 25,
+            "drawCallback": function(settings) {
+                var api = this.api();
+                var rows = api.rows({
+                    page: 'current'
+                }).nodes();
+                var last = null;
+                api.column(2, {
+                    page: 'current'
+                }).data().each(function(group, i) {
+                    if (last !== group) {
+                        $(rows).eq(i).before('<tr class="group"><td colspan="5">' + group + '</td></tr>');
+                        last = group;
+                    }
+                });
+            }
+        });
+    });
+});
+</script>
 @endsection

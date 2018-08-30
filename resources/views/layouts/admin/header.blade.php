@@ -11,7 +11,7 @@
                 <!-- Logo icon --><b>
                     <!--You can put here icon as well // <i class="wi wi-sunset"></i> //-->
                     <!-- Dark Logo icon -->
-                    <img src="{{config('website.setting.logo_light')}}" alt="homepage" class="dark-logo img-responsive" />
+                    <img src="{{config('website.setting.logo_light')}}" alt="homepage" class="dark-logo img-responsive"/>
                     <!-- Light Logo icon -->
                     <img src="{{config('website.setting.logo_dark')}}" alt="homepage" class="light-logo img-responsive" />
                 </b>
@@ -45,7 +45,7 @@
                 <!-- Profile -->
                 <!-- ============================================================== -->
                 <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle text-muted waves-effect waves-dark" href="" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><img src="{{ asset('assets/images/users/1.jpg') }}" alt="user" class="profile-pic" /></a>
+                    <a class="nav-link dropdown-toggle text-muted waves-effect waves-dark" href="" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><img src="{{QsApiHelpers::get_profile_img(Auth::guard('admin')->user()->qs_user_id) == false ? asset ('assets/images/users/1.jpg'): 'https://account.quarkspark.com/user/image?type=profile&uuid='.Auth::guard('admin')->user()->qs_user_id}}" alt="user" class="profile-pic" /></a>
                     <div class="dropdown-menu dropdown-menu-right scale-up">
                         <ul class="dropdown-user">
                             <li>
@@ -57,7 +57,7 @@
                                 </div>
                             </li>
                             <li role="separator" class="divider"></li>
-                            <li><a href="#"><i class="ti-settings"></i> Account Setting</a></li>
+                            <li><a href="https://account.quarkspark.com/user/login" target="_blank"><i class="ti-settings"></i> Account Setting</a></li>
                             <li role="separator" class="divider"></li>
                             <li><a href="{{ route('admin.logout') }}"><i class="fa fa-power-off"></i> Logout</a></li>
                         </ul>

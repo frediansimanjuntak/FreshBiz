@@ -17,7 +17,7 @@
     </div>
     <div class="col-md-7 align-self-center">
         <ol class="breadcrumb">
-            <li class="breadcrumb-item"><a href="javascript:void(0)">Home</a></li>
+            <li class="breadcrumb-item"><a href="{{route('admin.home')}}">Home</a></li>
             <li class="breadcrumb-item">Event Organizer</li>
             <li class="breadcrumb-item active">{{(\Request::route()->getName()=='admin.event_organisers.view.create')?'Create ':'Edit '}}</li>
         </ol>
@@ -34,7 +34,7 @@
     <!-- Start Page Content -->
     <!-- ============================================================== -->
     @if($errors->first('error'))
-    <div class="alert alert-danger"> <i class="ti-user"></i><strong>Error!</strong> {{$errors->first('error')}}
+    <div class="alert alert-danger"> <i class="ti-user"></i><strong> Error!</strong> {{$errors->first('error')}}
         <button type="button" class="close" data-dismiss="alert" aria-label="Close"> <span aria-hidden="true">&times;</span> </button>
     </div>
     @endif
@@ -42,9 +42,6 @@
     <div class="row">
         <div class="col-lg-6">
             <div class="card card-outline-info">
-                <div class="card-header">
-                    <h4 class="m-b-0 text-white">Add New form</h4>
-                </div>
                 <div class="card-body">
                     @if(\Request::route()->getName()=='admin.event_organisers.view.create') 
                         {!! Form::open(['route' => 'admin.event_organisers.func.create', 'method' => 'POST', 'id' => 'event_organisers_form', 'enctype' => 'multipart/form-data']) !!}
@@ -132,7 +129,7 @@
                                 <div class="col-md-12">
                                     <div class="form-group">
                                         {!! Form::label('user_key', 'User', ['class' => 'control-label']); !!}
-                                        <select class="select2 form-control custom-select" name="user_key" data-placeholder="Choose user">
+                                        <select class="select2 form-control custom-select" name="user_key" data-placeholder="Choose user" style="width: 100%; height:36px;">
                                             @if(\Request::route()->getName()=='admin.event_organisers.view.update')
                                                 <option value={{$eo->user_key}}>{{$eo->user->name}}</option>  
                                                 <option label="Choose one"></option>

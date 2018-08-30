@@ -102,7 +102,7 @@ class EventOrganisersController extends Controller
                             ->withInput();
             } 
             $key = $data['eo_key'];
-            unset($data['_method'], $data['_token'], $data['eo_key']);
+            unset($data['_method'], $data['_token'], $data['eo_key'], $data['_wysihtml5_mode']);
             $result = CrudHelpers::update($event_organisers,'key', $key, $data);
             return $result['success']==false ? redirect()->back()->withInput()->withErrors(['error' => $result['message']]) : redirect()->route('admin.event_organisers.view.list'); 
     	}

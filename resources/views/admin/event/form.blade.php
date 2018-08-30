@@ -27,7 +27,7 @@
     </div>
     <div class="col-md-7 align-self-center">
         <ol class="breadcrumb">
-            <li class="breadcrumb-item"><a href="javascript:void(0)">Home</a></li>
+            <li class="breadcrumb-item"><a href="{{route('admin.home')}}">Home</a></li>
             <li class="breadcrumb-item">Event</li>
             <li class="breadcrumb-item active">{{(\Request::route()->getName()=='admin.event.view.create')?'Create ':'Edit '}}</li>
         </ol>
@@ -44,17 +44,14 @@
     <!-- Start Page Content -->
     <!-- ============================================================== -->
     @if($errors->first('error'))
-    <div class="alert alert-danger"> <i class="ti-user"></i><strong>Error!</strong> {{$errors->first('error')}}
+    <div class="alert alert-danger"> <i class="ti-user"></i><strong> Error!</strong> {{$errors->first('error')}}
         <button type="button" class="close" data-dismiss="alert" aria-label="Close"> <span aria-hidden="true">&times;</span> </button>
     </div>
     @endif
     <!-- Row -->
     <div class="row">
         <div class="col-lg-12">
-            <div class="card card-outline-success">
-                <div class="card-header">
-                    <h4 class="m-b-0 text-white">Add New form</h4>
-                </div>
+            <div class="card card-outline-info">
                 <div class="card-body">
                     @if(\Request::route()->getName()=='admin.event.view.create') 
                         {!! Form::open(['route' => 'admin.event.func.create', 'method' => 'POST', 'id' => 'event_form', 'enctype' => 'multipart/form-data']) !!}
@@ -213,7 +210,7 @@
                                         </div>
                                         @if ($errors->has('tags'))
                                             <span class="text-danger">
-                                                <strong>{{ $errors->first('locattagsion') }}</strong>
+                                                <strong>{{ $errors->first('tags') }}</strong>
                                             </span> 
                                         @endif
                                     </div>

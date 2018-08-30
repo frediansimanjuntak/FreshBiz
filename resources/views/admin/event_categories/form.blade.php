@@ -2,9 +2,7 @@
 @section('title', (\Request::route()->getName()=='admin.event_categories.view.create')?'Create Event Category':'Edit Event Category')
 @section('pagespecificstyles') 
 <!-- style -->
-<link href="{{ asset ('assets/admin/lib/highlightjs/github.css') }}" rel="stylesheet">
-<link href="{{ asset ('assets/admin/lib/datatables/jquery.dataTables.css') }}" rel="stylesheet">
-<link href="{{ asset ('assets/admin/lib/select2/css/select2.min.css') }}" rel="stylesheet">
+
 <!-- /style -->
 @endsection
 
@@ -18,7 +16,7 @@
     </div>
     <div class="col-md-7 align-self-center">
         <ol class="breadcrumb">
-            <li class="breadcrumb-item"><a href="javascript:void(0)">Home</a></li>
+            <li class="breadcrumb-item"><a href="{{route('admin.home')}}">Home</a></li>
             <li class="breadcrumb-item">Event Categories</li>
             <li class="breadcrumb-item active">{{(\Request::route()->getName()=='admin.event_categories.view.create')?'Create ':'Edit '}}</li>
         </ol>
@@ -35,7 +33,7 @@
     <!-- Start Page Content -->
     <!-- ============================================================== -->
     @if($errors->first('error'))
-    <div class="alert alert-danger"> <i class="ti-user"></i><strong>Error!</strong> {{$errors->first('error')}}
+    <div class="alert alert-danger"> <i class="ti-user"></i><strong> Error!</strong> {{$errors->first('error')}}
         <button type="button" class="close" data-dismiss="alert" aria-label="Close"> <span aria-hidden="true">&times;</span> </button>
     </div>
     @endif
@@ -43,9 +41,6 @@
     <div class="row">
             <div class="col-lg-6">
                 <div class="card card-outline-info">
-                    <div class="card-header">
-                        <h4 class="m-b-0 text-white">Add New form</h4>
-                    </div>
                     <div class="card-body">
                         @if(\Request::route()->getName()=='admin.event_categories.view.create') 
                             {!! Form::open(['route' => 'admin.event_categories.func.create', 'method' => 'POST', 'id' => 'event_categories_form', 'enctype' => 'multipart/form-data']) !!}

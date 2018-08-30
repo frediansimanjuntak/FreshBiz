@@ -7,13 +7,15 @@
         <!-- User profile -->
         <div class="user-profile">
             <!-- User profile image -->
-            <div class="profile-img"> <img src="{{ asset ('assets/images/users/profile.png') }}" alt="user" />
+            <div class="profile-img"> 
+                {{-- <img src="{{ asset ('assets/images/users/profile.png') }}" alt="user" /> --}}
                 <!-- this is blinking heartbit-->
                 <div class="notify setpos"> <span class="heartbit"></span> <span class="point"></span> </div>
             </div>
             <!-- User profile text-->
             <div class="profile-text">
-                <h5>{{Auth::guard('admin')->user()->name}}</h5>
+                <h4>{{Auth::guard('admin')->user()->name}}</h4>
+                <h5>{{Auth::guard('admin')->user()->administrator == true ? 'administrator' : 'normal user'}}</h5>
                 <a href="{{ route('admin.logout') }}" class="" data-toggle="tooltip" title="Logout"><i class="mdi mdi-power"></i></a>                
             </div>
         </div>

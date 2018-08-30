@@ -5448,7 +5448,9 @@ Main sidebar
   padding-top: 60px;
   background: #fff;
   -webkit-box-shadow: 1px 0px 20px rgba(0, 0, 0, 0.08);
-  box-shadow: 1px 0px 20px rgba(0, 0, 0, 0.08); }
+  box-shadow: 1px 0px 20px rgba(0, 0, 0, 0.08);
+  margin-top: 40px;
+}
 
 .fix-sidebar .left-sidebar {
   position: fixed; }

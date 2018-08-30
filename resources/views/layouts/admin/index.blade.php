@@ -9,7 +9,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
     <!-- Favicon icon -->
-    <link rel="icon" type="image/png" sizes="16x16" href="{{ asset ('assets/images/favicon.png') }}">
+    <link rel="icon" type="image/png" sizes="16x16" href="{{config('website.setting.logo_small_dark')}}">
     <title>@yield('title') | Admin {{config('website.setting.name')}}</title>
     <!-- Bootstrap Core CSS -->
     <link href="{{ asset ('assets/plugins/bootstrap/css/bootstrap.min.css') }}" rel="stylesheet">

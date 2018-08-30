@@ -34,7 +34,7 @@ class WebsiteSettingController extends Controller
 
     public function view_update(Request $request)
     {        
-        $website_setting = WebsiteSettings::first();
+        $website_setting = WebsiteSettings::first();     
         return view('admin.website_setting.form', ['website_setting'=>$website_setting]);
     }
 
